@@ -13,7 +13,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "2.1.0"),
+        .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "2.1.1"),
         .package(url: "https://github.com/ShawnMoore/XMLParsing", .branch("master")),
     ],
     targets: [
