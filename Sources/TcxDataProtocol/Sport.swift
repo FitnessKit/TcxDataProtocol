@@ -25,6 +25,7 @@
 import Foundation
 
 /// TCX Sport
+@available(swift 4.0)
 public enum Sport: String, Codable {
     /// Biking
     case biking = "Biking"

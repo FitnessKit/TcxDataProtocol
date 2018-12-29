@@ -25,6 +25,7 @@
 import Foundation
 
 /// TCX Build Type
+@available(swift 4.0)
 public enum BuildType: String, Codable {
     /// Internal Build
     case `internal` = "Internal"
