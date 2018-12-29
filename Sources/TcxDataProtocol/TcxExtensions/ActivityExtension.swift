@@ -24,9 +24,38 @@
 
 import Foundation
 
+//
+/// TCX Activity Trackpoint Extension
+@available(swift 4.0)
+public struct ActivityTrackpointExtension: Codable {
+    // ActivityTrackpointExtension_t
+
+    /// Speed
+    private(set) public var speed: Double?
+
+    /// Run Cadence
+    // max 254 (CadenceValue_t)
+    private(set) public var runCadence: UInt8?
+
+    /// Watts
+    private(set) public var watts: UInt16?
+
+    /// Cadence ensor Type
+    //attribute
+    private(set) public var cadenceSensor: CadenceSensorType?
+
+    enum CodingKeys: String, CodingKey {
+        case speed = "ns3:Speed"
+        case runCadence = "ns3:RunCadence"
+        case watts = "ns3:Watts"
+        case cadenceSensor = "ns3:CadenceSensorType"
+    }
+}
+
 /// TCX Activity Lap Extension
 @available(swift 4.0)
 public struct ActivityLapExtension: Codable {
+    // ActivityLapExtension_t
 
     /// Distance in Meters
     private(set) public var avgSpeed: Double?
@@ -61,4 +90,15 @@ public struct ActivityLapExtension: Codable {
         case averageWatts = "ns3:AvgWatts"
         case maximumWatts = "ns3:MaxWatts"
     }
+}
+
+/// TCX Cadence Sensor Type
+@available(swift 4.0)
+public enum CadenceSensorType: String, Codable {
+    // CadenceSensorType_t
+
+    /// Footpod
+    case footpod = "Footpod"
+    /// Bike
+    case bike = "Bike"
 }

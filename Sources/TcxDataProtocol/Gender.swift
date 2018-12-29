@@ -1,5 +1,5 @@
 //
-//  TriggerMethod.swift
+//  Gender.swift
 //  TcxDataProtocol
 //
 //  Created by Kevin Hoogheem on 12/29/18.
@@ -24,18 +24,13 @@
 
 import Foundation
 
-/// TCX Trigger Method
+/// TCX Gender
 @available(swift 4.0)
-public enum TriggerMethod: String, Codable {
-    //TriggerMethod_t
-    /// Manual
-    case manual = "Manual"
-    /// Distance
-    case distance = "Distance"
-    /// Location
-    case location = "Location"
-    /// Time
-    case time = "Time"
-    /// HeartRate
-    case heartRate = "HeartRate"
+public enum Gender: String, Codable {
+    // Gender_t
+    
+    /// Male
+    case male = "Male"
+    /// Female
+    case female = "Female"
 }

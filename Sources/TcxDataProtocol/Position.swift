@@ -1,5 +1,5 @@
 //
-//  TriggerMethod.swift
+//  Position.swift
 //  TcxDataProtocol
 //
 //  Created by Kevin Hoogheem on 12/29/18.
@@ -24,18 +24,21 @@
 
 import Foundation
 
-/// TCX Trigger Method
+/// TCX Position
 @available(swift 4.0)
-public enum TriggerMethod: String, Codable {
-    //TriggerMethod_t
-    /// Manual
-    case manual = "Manual"
-    /// Distance
-    case distance = "Distance"
-    /// Location
-    case location = "Location"
-    /// Time
-    case time = "Time"
-    /// HeartRate
-    case heartRate = "HeartRate"
+public struct Position: Codable {
+    /// Position_t
+
+    /// Latitude Degrees
+    // 90 to -90
+    private(set) public var latitudeDegrees: Double?
+
+    /// Longitude Degrees
+    // 180 to -180
+    private(set) public var longitudeDegrees: Double?
+
+    enum CodingKeys: String, CodingKey {
+        case latitudeDegrees = "LatitudeDegrees"
+        case longitudeDegrees = "LongitudeDegrees"
+    }
 }
