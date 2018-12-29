@@ -1,5 +1,5 @@
 //
-//  Extensions.swift
+//  SensorState.swift
 //  TcxDataProtocol
 //
 //  Created by Kevin Hoogheem on 12/29/18.
@@ -24,19 +24,11 @@
 
 import Foundation
 
-/// TCX Extension
+/// TCX Sensor State
 @available(swift 4.0)
-public struct Extension: Codable {
-
-    /// Activity TrackPoint Extension
-    private(set) public var activityTrackpointExtension: ActivityTrackpointExtension?
-
-    /// Activity Lap Extension
-    private(set) public var activityLapExtension: ActivityLapExtension?
-
-    enum CodingKeys: String, CodingKey {
-        case activityTrackpointExtension = "ns3:TPX"
-        case activityLapExtension = "ns3:LX"
-    }
-
+public enum SensorState: String, Codable {
+    /// Present
+    case present = "Present"
+    /// Absent
+    case Aasent = "Absent"
 }

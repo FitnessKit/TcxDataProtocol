@@ -1,5 +1,5 @@
 //
-//  Extensions.swift
+//  Track.swift
 //  TcxDataProtocol
 //
 //  Created by Kevin Hoogheem on 12/29/18.
@@ -24,19 +24,56 @@
 
 import Foundation
 
-/// TCX Extension
-@available(swift 4.0)
-public struct Extension: Codable {
+/// TCX Track
+public struct Track: Codable {
+    // Track_t
 
-    /// Activity TrackPoint Extension
-    private(set) public var activityTrackpointExtension: ActivityTrackpointExtension?
-
-    /// Activity Lap Extension
-    private(set) public var activityLapExtension: ActivityLapExtension?
+    /// Track Point
+    private(set) public var trackPoint: [Trackpoint]?
 
     enum CodingKeys: String, CodingKey {
-        case activityTrackpointExtension = "ns3:TPX"
-        case activityLapExtension = "ns3:LX"
+        case trackPoint = "Trackpoint"
     }
+}
 
+/// TCX Track Point
+public struct Trackpoint: Codable {
+    // Trackpoint_t
+
+    /// Time
+    private(set) public var time: Date?
+
+    /// Position
+    private(set) public var position: Position?
+
+    /// Altitude in Meters
+    private(set) public var altitude: Double?
+
+    /// Distance in Meters
+    private(set) public var distance: Double?
+
+    /// Heart Rate
+    private(set) public var heartRate: HeartRateInBeatsPerMinute?
+
+    /// Cadence
+    // max 254 (CadenceValue_t)
+    private(set) public var cadence: UInt8?
+
+    /// Sensor State
+    private(set) public var sensorState: SensorState?
+
+    /// Extensions for TrackPoint
+    private(set) public var extensions: [Extension]?
+
+    enum CodingKeys: String, CodingKey {
+        case time = "Time"
+        case position = "Position"
+        case altitude = "AltitudeMeters"
+        case distance = "DistanceMeters"
+        case heartRate = "HeartRateBpm"
+        case cadence = "Cadence"
+        case sensorState = "SensorState"
+
+        case extensions = "Extensions"
+    }
 }
