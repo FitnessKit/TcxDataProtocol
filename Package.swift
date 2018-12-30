@@ -23,7 +23,7 @@ let package = Package(
             name: "TcxDataProtocol",
             dependencies: [
                 "FitnessUnits",
-                "XMLParsing",
+//                "XMLParsing",
             ]),
         .testTarget(
             name: "TcxDataProtocolTests",
