@@ -102,7 +102,7 @@ public struct ActivityLap {
 @available(swift 4.0)
 extension ActivityLap: Codable {
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         // attribute
         case startTime = "StartTime"
 

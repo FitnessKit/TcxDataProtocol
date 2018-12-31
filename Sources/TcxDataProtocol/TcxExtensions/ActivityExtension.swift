@@ -58,7 +58,7 @@ public struct ActivityTrackpointExtension {
 @available(swift 4.0)
 extension ActivityTrackpointExtension: Codable {
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case speed = "ns3:Speed"
         case runCadence = "ns3:RunCadence"
         case watts = "ns3:Watts"
@@ -118,7 +118,7 @@ public struct ActivityLapExtension {
 @available(swift 4.0)
 extension ActivityLapExtension: Codable {
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case avgSpeed = "ns3:AvgSpeed"
         case maximumBikeCadence = "ns3:MaxBikeCadence"
         case averageRunCadence = "ns3:AvgRunCadence"

@@ -55,7 +55,7 @@ public struct Plan {
 @available(swift 4.0)
 extension Plan: Codable {
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case name = "name"
 
         // attribute

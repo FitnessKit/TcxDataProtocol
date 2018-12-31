@@ -42,7 +42,7 @@ public struct HeartRateInBeatsPerMinute {
 @available(swift 4.0)
 extension HeartRateInBeatsPerMinute: Codable {
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case heartRate = "Value"
     }
 }
@@ -65,7 +65,7 @@ public struct HeartRateInBeatsPercentMax {
 @available(swift 4.0)
 extension HeartRateInBeatsPercentMax: Codable {
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case heartRate = "Value"
     }
 }

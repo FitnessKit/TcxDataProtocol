@@ -42,7 +42,7 @@ public struct QuickWorkoutResults {
 @available(swift 4.0)
 extension QuickWorkoutResults: Codable {
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case totalTime = "TotalTimeSeconds"
         case distance = "DistanceMeters"
     }

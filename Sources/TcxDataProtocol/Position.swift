@@ -46,7 +46,7 @@ public struct Position {
 @available(swift 4.0)
 extension Position: Codable {
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case latitudeDegrees = "LatitudeDegrees"
         case longitudeDegrees = "LongitudeDegrees"
     }

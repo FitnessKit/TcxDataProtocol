@@ -60,7 +60,7 @@ public struct Creator {
 @available(swift 4.0)
 extension Creator: Codable {
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         // attribute
         case type = "xsi:type"
 
