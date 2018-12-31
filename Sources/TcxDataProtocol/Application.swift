@@ -26,7 +26,7 @@ import Foundation
 
 /// Identifies a PC software application
 @available(swift 4.0)
-public struct Application: Codable {
+public struct Application {
     /// Application_t
 
     /// Build Info
@@ -42,10 +42,22 @@ public struct Application: Codable {
     /// Part Number
     private(set) public var partNumber: String?
 
+    public init(build: Build?,
+                language: String?,
+                partNumber: String?)
+    {
+        self.build = build
+        self.language = language
+        self.partNumber = partNumber
+    }
+}
+
+@available(swift 4.0)
+extension Application: Codable {
+
     enum CodingKeys: String, CodingKey {
         case build = "Build"
         case language = "LangID"
         case partNumber = "PartNumber"
     }
-
 }

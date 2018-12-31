@@ -26,7 +26,7 @@ import Foundation
 
 /// TCX Position
 @available(swift 4.0)
-public struct Position: Codable {
+public struct Position {
     /// Position_t
 
     /// Latitude Degrees
@@ -36,6 +36,15 @@ public struct Position: Codable {
     /// Longitude Degrees
     // 180 to -180
     private(set) public var longitudeDegrees: Double?
+
+    public init(latitudeDegrees: Double?, longitudeDegrees: Double?) {
+        self.latitudeDegrees = latitudeDegrees
+        self.longitudeDegrees = longitudeDegrees
+    }
+}
+
+@available(swift 4.0)
+extension Position: Codable {
 
     enum CodingKeys: String, CodingKey {
         case latitudeDegrees = "LatitudeDegrees"

@@ -24,14 +24,23 @@
 
 import Foundation
 
+
 /// TCX Heart Rate in BPM
 @available(swift 4.0)
-public struct HeartRateInBeatsPerMinute: Codable {
+public struct HeartRateInBeatsPerMinute {
     // HeartRateInBeatsPerMinute_t
 
     /// Heart Rate
     // HeartRateValue_t
     private(set) public var heartRate: UInt8
+
+    public init(heartRate: UInt8) {
+        self.heartRate = heartRate
+    }
+}
+
+@available(swift 4.0)
+extension HeartRateInBeatsPerMinute: Codable {
 
     enum CodingKeys: String, CodingKey {
         case heartRate = "Value"
@@ -40,13 +49,21 @@ public struct HeartRateInBeatsPerMinute: Codable {
 
 /// TCX Heart Rate in BPM
 @available(swift 4.0)
-public struct HeartRateInBeatsPercentMax: Codable {
+public struct HeartRateInBeatsPercentMax {
     // HeartRateAsPercentOfMax_t
 
     /// Heart Rate
     // HeartRateValue_t
     // PercentOfMax_t 0..100
     private(set) public var heartRate: UInt8
+
+    public init(heartRate: UInt8) {
+        self.heartRate = heartRate
+    }
+}
+
+@available(swift 4.0)
+extension HeartRateInBeatsPercentMax: Codable {
 
     enum CodingKeys: String, CodingKey {
         case heartRate = "Value"

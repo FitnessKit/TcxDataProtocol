@@ -25,6 +25,7 @@
 import Foundation
 
 /// TCX Track
+@available(swift 4.0)
 public struct Track: Codable {
     // Track_t
 
@@ -37,6 +38,7 @@ public struct Track: Codable {
 }
 
 /// TCX Track Point
+@available(swift 4.0)
 public struct Trackpoint: Codable {
     // Trackpoint_t
 

@@ -26,7 +26,7 @@ import Foundation
 
 /// TCX Version
 @available(swift 4.0)
-public struct Version: Codable {
+public struct Version {
 
     /// Major
     private(set) public var major: UInt16
@@ -39,6 +39,21 @@ public struct Version: Codable {
 
     /// Build Minor
     private(set) public var buildMinor: UInt16?
+
+    public init(major: UInt16,
+                minor: UInt16,
+                buildMajor: UInt16?,
+                buildMinor: UInt16?)
+    {
+        self.major = major
+        self.minor = minor
+        self.buildMajor = buildMajor
+        self.buildMinor = buildMinor
+    }
+}
+
+@available(swift 4.0)
+extension Version: Codable {
 
     enum CodingKeys: String, CodingKey {
         case major = "VersionMajor"

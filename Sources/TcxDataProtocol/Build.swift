@@ -39,7 +39,7 @@ public enum BuildType: String, Codable {
 
 /// Identifies Build Information
 @available(swift 4.0)
-public struct Build: Codable {
+public struct Build {
     // Build_t
 
     /// Version
@@ -57,6 +57,21 @@ public struct Build: Codable {
 
     /// Build Type
     private(set) public var type: BuildType?
+
+    public init(version: Version,
+                time: String?,
+                builder: String?,
+                type: BuildType?)
+    {
+        self.version = version
+        self.time = time
+        self.builder = builder
+        self.type = type
+    }
+}
+
+@available(swift 4.0)
+extension Build: Codable {
 
     enum CodingKeys: String, CodingKey {
         case version = "Version"

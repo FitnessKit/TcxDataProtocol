@@ -27,7 +27,7 @@ import Foundation
 //
 /// TCX Activity Trackpoint Extension
 @available(swift 4.0)
-public struct ActivityTrackpointExtension: Codable {
+public struct ActivityTrackpointExtension {
     // ActivityTrackpointExtension_t
 
     /// Speed
@@ -41,20 +41,36 @@ public struct ActivityTrackpointExtension: Codable {
     private(set) public var watts: UInt16?
 
     /// Cadence ensor Type
-    //attribute
     private(set) public var cadenceSensor: CadenceSensorType?
+
+    public init (speed: Double?,
+                 runCadence: UInt8?,
+                 watts: UInt16?,
+                 cadenceSensor: CadenceSensorType?)
+    {
+        self.speed = speed
+        self.runCadence = runCadence
+        self.watts = watts
+        self.cadenceSensor = cadenceSensor
+    }
+}
+
+@available(swift 4.0)
+extension ActivityTrackpointExtension: Codable {
 
     enum CodingKeys: String, CodingKey {
         case speed = "ns3:Speed"
         case runCadence = "ns3:RunCadence"
         case watts = "ns3:Watts"
+
+        //attribute
         case cadenceSensor = "ns3:CadenceSensorType"
     }
 }
 
 /// TCX Activity Lap Extension
 @available(swift 4.0)
-public struct ActivityLapExtension: Codable {
+public struct ActivityLapExtension {
     // ActivityLapExtension_t
 
     /// Distance in Meters
@@ -80,6 +96,27 @@ public struct ActivityLapExtension: Codable {
 
     /// Maximum Watts
     private(set) public var maximumWatts: UInt16?
+
+    public init (avgSpeed: Double?,
+                 maximumBikeCadence: UInt8?,
+                 averageRunCadence: UInt8?,
+                 maximumRunCadence: UInt8?,
+                 steps: UInt16?,
+                 averageWatts: UInt16?,
+                 maximumWatts: UInt16?)
+    {
+        self.avgSpeed = avgSpeed
+        self.maximumBikeCadence = maximumBikeCadence
+        self.averageRunCadence = averageRunCadence
+        self.maximumRunCadence = maximumRunCadence
+        self.steps = steps
+        self.averageWatts = averageWatts
+        self.maximumWatts = maximumWatts
+    }
+}
+
+@available(swift 4.0)
+extension ActivityLapExtension: Codable {
 
     enum CodingKeys: String, CodingKey {
         case avgSpeed = "ns3:AvgSpeed"

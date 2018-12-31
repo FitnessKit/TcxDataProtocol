@@ -25,11 +25,11 @@
 import Foundation
 
 /// TCX Activity Lap
-public struct ActivityLap: Codable {
+@available(swift 4.0)
+public struct ActivityLap {
     // ActivityLap_t
 
     /// Start Time
-    // attribute
     private(set) public var startTime: Date?
 
     /// Total Time
@@ -69,8 +69,43 @@ public struct ActivityLap: Codable {
     /// Extensions for Activity Lap
     private(set) public var extensions: [Extension]?
 
+    public init(startTime: Date?,
+                totalTime: Double,
+                distance: Double,
+                maximumSpeed: Double?,
+                calories: UInt16,
+                averageHeartRate: HeartRateInBeatsPerMinute?,
+                maximumHeartRate: HeartRateInBeatsPerMinute?,
+                intensity: Intensity,
+                cadence: UInt8?,
+                triggerMethod: TriggerMethod,
+                track: [Track]?,
+                notes: String?,
+                extensions: [Extension]?)
+    {
+        self.startTime = startTime
+        self.totalTime = totalTime
+        self.distance = distance
+        self.maximumSpeed = maximumSpeed
+        self.calories = calories
+        self.averageHeartRate = averageHeartRate
+        self.maximumHeartRate = maximumHeartRate
+        self.intensity = intensity
+        self.cadence = cadence
+        self.triggerMethod = triggerMethod
+        self.track = track
+        self.notes = notes
+        self.extensions = extensions
+    }
+}
+
+@available(swift 4.0)
+extension ActivityLap: Codable {
+
     enum CodingKeys: String, CodingKey {
+        // attribute
         case startTime = "StartTime"
+
         case totalTime = "TotalTimeSeconds"
         case distance = "DistanceMeters"
         case maximumSpeed = "MaximumSpeed"
@@ -84,5 +119,4 @@ public struct ActivityLap: Codable {
         case notes = "Notes"
         case extensions = "Extensions"
     }
-
 }

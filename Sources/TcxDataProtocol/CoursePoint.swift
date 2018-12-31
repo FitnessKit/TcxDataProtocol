@@ -24,10 +24,9 @@
 
 import Foundation
 
-
 /// TCX Course Point
 @available(swift 4.0)
-public struct CoursePoint: Codable {
+public struct CoursePoint {
     /// CoursePoint_t
 
     /// Course Point Name
@@ -43,14 +42,29 @@ public struct CoursePoint: Codable {
     /// Notes
     private(set) public var notes: String?
 
+    public init(name: String?,
+                altitude: Double?,
+                pointType: CoursePointType,
+                notes: String?)
+    {
+        self.name = name
+        self.altitude = altitude
+        self.pointType = pointType
+        self.notes = notes
+    }
+}
+
+@available(swift 4.0)
+extension CoursePoint: Codable {
+
     enum CodingKeys: String, CodingKey {
         case name = "Name"
         case altitude = "AltitudeMeters"
         case pointType = "PointType"
         case notes = "Notes"
     }
-
 }
+
 
 /// Identifies CoursePoint Type
 @available(swift 4.0)

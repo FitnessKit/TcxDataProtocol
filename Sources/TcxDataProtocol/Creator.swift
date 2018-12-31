@@ -26,8 +26,11 @@ import Foundation
 
 /// Identifies Creator Information
 @available(swift 4.0)
-public struct Creator: Codable {
-    /// AbstractSource_t
+public struct Creator {
+    // AbstractSource_t
+
+    /// Type
+    private(set) public var type: String?
 
     /// Name
     private(set) public var name: String
@@ -41,7 +44,26 @@ public struct Creator: Codable {
     /// Product Identification
     private(set) public var productIdentification: String?
 
+    public init(name: String,
+                version: Version?,
+                unitIdentification: String?,
+                productIdentification: String?)
+    {
+        self.type = "Device_t"
+        self.name = name
+        self.version = version
+        self.unitIdentification = unitIdentification
+        self.productIdentification = productIdentification
+    }
+}
+
+@available(swift 4.0)
+extension Creator: Codable {
+
     enum CodingKeys: String, CodingKey {
+        // attribute
+        case type = "xsi:type"
+
         case name = "Name"
         case version = "Version"
         case unitIdentification = "UnitId"

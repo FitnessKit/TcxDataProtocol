@@ -26,7 +26,7 @@ import Foundation
 
 /// TCX Extension
 @available(swift 4.0)
-public struct Extension: Codable {
+public struct Extension {
 
     /// Activity TrackPoint Extension
     private(set) public var activityTrackpointExtension: ActivityTrackpointExtension?
@@ -34,9 +34,19 @@ public struct Extension: Codable {
     /// Activity Lap Extension
     private(set) public var activityLapExtension: ActivityLapExtension?
 
+    public init(activityTrackpointExtension: ActivityTrackpointExtension?,
+                activityLapExtension: ActivityLapExtension?)
+    {
+        self.activityTrackpointExtension = activityTrackpointExtension
+        self.activityLapExtension = activityLapExtension
+    }
+}
+
+@available(swift 4.0)
+extension Extension: Codable {
+
     enum CodingKeys: String, CodingKey {
         case activityTrackpointExtension = "ns3:TPX"
         case activityLapExtension = "ns3:LX"
     }
-
 }
