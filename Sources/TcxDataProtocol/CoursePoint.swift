@@ -30,7 +30,6 @@ public struct CoursePoint {
     /// CoursePoint_t
 
     /// Course Point Name
-    // size 1...10
     private(set) public var name: String?
 
     /// Altitude in Meters
@@ -47,7 +46,7 @@ public struct CoursePoint {
                 pointType: CoursePointType,
                 notes: String?)
     {
-        self.name = name
+        self.name = String.boundedSize(name, maxCount: 10)
         self.altitude = altitude
         self.pointType = pointType
         self.notes = notes
@@ -64,7 +63,6 @@ extension CoursePoint: Codable {
         case notes = "Notes"
     }
 }
-
 
 /// Identifies CoursePoint Type
 @available(swift 4.0)

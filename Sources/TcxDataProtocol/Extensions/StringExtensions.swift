@@ -1,5 +1,5 @@
 //
-//  Plan.swift
+//  StringExtensions.swift
 //  TcxDataProtocol
 //
 //  Created by Kevin Hoogheem on 12/31/18.
@@ -24,39 +24,20 @@
 
 import Foundation
 
-/// TCX Plan
-public struct Plan {
-    // Plan_t
+extension String {
 
-    /// Name
-    private(set) public var name: String?
-
-    /// Training Type
-    private(set) public var trainingType: TrainingType
-
-    /// Interval Workout
-    private(set) public var intervalWorkout: Bool
-
-    public init(name: String?,
-                trainingType: TrainingType,
-                intervalWorkout: Bool)
-    {
-
-        self.name = String.boundedSize(name, maxCount: 15)
-        self.trainingType = trainingType
-        self.intervalWorkout = intervalWorkout
+    func boundedToSize(_ maxCount: Int) -> String? {
+        let index = self.index(self.startIndex, offsetBy: min(self.count, maxCount))
+        return String(self.prefix(upTo: index))
     }
-}
 
-@available(swift 4.0)
-extension Plan: Codable {
+    static func boundedSize(_ value: String?, maxCount: Int) -> String? {
+        if let str = value {
+            let index = str.index(str.startIndex, offsetBy: Swift.min(str.count, maxCount))
+            return String(str.prefix(upTo: index))
+        }
 
-    public enum CodingKeys: String, CodingKey {
-        case name = "name"
-
-        // attribute
-        case trainingType = "TrainingType"
-        // attribute
-        case intervalWorkout = "IntervalWorkout"
+        return nil
     }
+
 }
