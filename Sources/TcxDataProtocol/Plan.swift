@@ -1,5 +1,5 @@
 //
-//  QuickWorkoutResults.swift
+//  Plan.swift
 //  TcxDataProtocol
 //
 //  Created by Kevin Hoogheem on 12/31/18.
@@ -24,26 +24,43 @@
 
 import Foundation
 
-/// TCX Quick Workout Results
-public struct QuickWorkoutResults {
+/// TCX Plan
+public struct Plan {
+    // Plan_t
 
-    /// Total Time in Seconds
-    private(set) public var totalTime: Double?
+    /// Name
+    private(set) public var name: String?
 
-    /// Distance in Meters
-    private(set) public var distance: Double?
+    /// Training Type
+    private(set) public var trainingType: TrainingType
 
-    public init(totalTime: Double?, distance: Double?) {
-        self.totalTime = totalTime
-        self.distance = distance
+    /// Interval Workout
+    private(set) public var intervalWorkout: Bool
+
+    public init(name: String?,
+                trainingType: TrainingType,
+                intervalWorkout: Bool)
+    {
+
+        if let name = name {
+            let index = name.index(name.startIndex, offsetBy: min(name.count, 15))
+            self.name = String(name.prefix(upTo: index))
+        }
+
+        self.trainingType = trainingType
+        self.intervalWorkout = intervalWorkout
     }
 }
 
 @available(swift 4.0)
-extension QuickWorkoutResults: Codable {
+extension Plan: Codable {
 
     enum CodingKeys: String, CodingKey {
-        case totalTime = "TotalTimeSeconds"
-        case distance = "DistanceMeters"
+        case name = "name"
+
+        // attribute
+        case trainingType = "TrainingType"
+        // attribute
+        case intervalWorkout = "IntervalWorkout"
     }
 }

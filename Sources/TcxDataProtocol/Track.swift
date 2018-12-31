@@ -26,11 +26,19 @@ import Foundation
 
 /// TCX Track
 @available(swift 4.0)
-public struct Track: Codable {
+public struct Track {
     // Track_t
 
     /// Track Point
     private(set) public var trackPoint: [Trackpoint]?
+
+    public init(trackPoint: [Trackpoint]?) {
+        self.trackPoint = trackPoint
+    }
+}
+
+@available(swift 4.0)
+extension Track: Codable {
 
     enum CodingKeys: String, CodingKey {
         case trackPoint = "Trackpoint"
@@ -39,7 +47,7 @@ public struct Track: Codable {
 
 /// TCX Track Point
 @available(swift 4.0)
-public struct Trackpoint: Codable {
+public struct Trackpoint {
     // Trackpoint_t
 
     /// Time
@@ -66,6 +74,32 @@ public struct Trackpoint: Codable {
 
     /// Extensions for TrackPoint
     private(set) public var extensions: [Extension]?
+
+    public init(time: Date?,
+                position: Position?,
+                altitude: Double?,
+                distance: Double?,
+                heartRate: HeartRateInBeatsPerMinute?,
+                cadence: UInt8?,
+                sensorState: SensorState?,
+                extensions: [Extension]?)
+    {
+        self.time = time
+        self.altitude = altitude
+        self.distance = distance
+        self.heartRate = heartRate
+
+        if let cadence = cadence {
+            self.cadence = min(cadence, 254)
+        }
+
+        self.sensorState = sensorState
+        self.extensions = extensions
+    }
+}
+
+@available(swift 4.0)
+extension Trackpoint: Codable {
 
     enum CodingKeys: String, CodingKey {
         case time = "Time"
