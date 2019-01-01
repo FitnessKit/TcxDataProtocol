@@ -26,7 +26,7 @@ import Foundation
 
 extension String {
 
-    func boundedToSize(_ maxCount: Int) -> String? {
+    func boundToSize(_ maxCount: Int) -> String? {
         let index = self.index(self.startIndex, offsetBy: min(self.count, maxCount))
         return String(self.prefix(upTo: index))
     }

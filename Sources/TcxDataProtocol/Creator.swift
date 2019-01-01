@@ -32,7 +32,9 @@ public struct Creator {
     /// Type
     private(set) public var type: String?
 
-    /// Name
+    /// Creator Name
+    ///
+    /// This represents a Device name
     private(set) public var name: String
 
     /// Version

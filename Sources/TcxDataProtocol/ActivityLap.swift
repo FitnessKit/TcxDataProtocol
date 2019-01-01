@@ -33,9 +33,13 @@ public struct ActivityLap {
     private(set) public var startTime: Date?
 
     /// Total Time
+    ///
+    /// - note: Seconds
     private(set) public var totalTime: Double
 
     /// Distance in Meters
+    ///
+    /// - note: Meters
     private(set) public var distance: Double
 
     /// Maximum Speed
@@ -54,7 +58,6 @@ public struct ActivityLap {
     private(set) public var intensity: Intensity
 
     /// Cadence
-    // max 254
     private(set) public var cadence: UInt8?
 
     /// Trigger Method
@@ -91,7 +94,11 @@ public struct ActivityLap {
         self.averageHeartRate = averageHeartRate
         self.maximumHeartRate = maximumHeartRate
         self.intensity = intensity
-        self.cadence = cadence
+
+        if let cadence = cadence {
+            self.cadence = min(cadence, 254)
+        }
+
         self.triggerMethod = triggerMethod
         self.track = track
         self.notes = notes

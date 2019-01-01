@@ -37,7 +37,7 @@ public enum BuildType: String, Codable {
     case release = "Release"
 }
 
-/// Identifies Build Information
+/// TCX Build Information
 @available(swift 4.0)
 public struct Build {
     // Build_t
