@@ -66,19 +66,15 @@ extension Extension: Codable {
         var activityTrackpointExtension: ActivityTrackpointExtension?
         var activityLapExtension: ActivityLapExtension?
 
-        activityTrackpointExtension = try container.decodeIfPresent(ActivityTrackpointExtension.self,
-                                                                        forKey: StringKey(stringValue: CodingKeys.activityTrackpointExtension.rawValue)!)
-        if activityTrackpointExtension == nil {
-            activityTrackpointExtension = try container.decodeIfPresent(ActivityTrackpointExtension.self,
-                                                                        forKey: StringKey(stringValue: AlternateCodingKeys.activityTrackpointExtension.rawValue)!)
-        }
 
-        activityLapExtension = try container.decodeIfPresent(ActivityLapExtension.self,
-                                                             forKey: StringKey(stringValue: CodingKeys.activityLapExtension.rawValue)!)
-        if activityLapExtension == nil {
-            activityLapExtension = try container.decodeIfPresent(ActivityLapExtension.self,
-                                                                 forKey: StringKey(stringValue: AlternateCodingKeys.activityLapExtension.rawValue)!)
-        }
+        activityTrackpointExtension = try container.lazyDecode(ActivityTrackpointExtension.self,
+                                                               keyOne: StringKey(stringValue: CodingKeys.activityTrackpointExtension.rawValue)!,
+                                                               keyTwo: StringKey(stringValue: AlternateCodingKeys.activityTrackpointExtension.rawValue)!)
+
+
+        activityLapExtension = try container.lazyDecode(ActivityLapExtension.self,
+                                                        keyOne: StringKey(stringValue: CodingKeys.activityLapExtension.rawValue)!,
+                                                        keyTwo: StringKey(stringValue: AlternateCodingKeys.activityLapExtension.rawValue)!)
 
 
         self.init(activityTrackpointExtension: activityTrackpointExtension,

@@ -24,7 +24,20 @@
 
 import Foundation
 
-//
+// Schema
+// https://www8.garmin.com/xmlschemas/ActivityExtensionv2.xsd
+
+/// TCX Cadence Sensor Type
+@available(swift 4.0)
+public enum CadenceSensorType: String, Codable {
+    // CadenceSensorType_t
+
+    /// Footpod
+    case footpod = "Footpod"
+    /// Bike
+    case bike = "Bike"
+}
+
 /// TCX Activity Trackpoint Extension
 @available(swift 4.0)
 public struct ActivityTrackpointExtension {
@@ -49,7 +62,11 @@ public struct ActivityTrackpointExtension {
                  cadenceSensor: CadenceSensorType?)
     {
         self.speed = speed
-        self.runCadence = runCadence
+
+        if let runCadence = runCadence {
+            self.runCadence = min(runCadence, 254)
+        }
+
         self.watts = watts
         self.cadenceSensor = cadenceSensor
     }
@@ -89,33 +106,21 @@ extension ActivityTrackpointExtension: Codable {
         var watts: UInt16?
         var cadenceSensor: CadenceSensorType?
 
-        speed = try container.decodeIfPresent(Double.self,
-                                              forKey: StringKey(stringValue: CodingKeys.speed.rawValue)!)
-        if speed == nil {
-            speed = try container.decodeIfPresent(Double.self,
-                                                  forKey: StringKey(stringValue: AlternateCodingKeys.speed.rawValue)!)
-        }
+        speed = try container.lazyDecode(Double.self,
+                                         keyOne: StringKey(stringValue: CodingKeys.speed.rawValue)!,
+                                         keyTwo: StringKey(stringValue: AlternateCodingKeys.speed.rawValue)!)
 
-        runCadence = try container.decodeIfPresent(UInt8.self,
-                                                   forKey: StringKey(stringValue: CodingKeys.runCadence.rawValue)!)
-        if runCadence == nil {
-            runCadence = try container.decodeIfPresent(UInt8.self,
-                                                       forKey: StringKey(stringValue: AlternateCodingKeys.runCadence.rawValue)!)
-        }
+        runCadence = try container.lazyDecode(UInt8.self,
+                                              keyOne: StringKey(stringValue: CodingKeys.runCadence.rawValue)!,
+                                              keyTwo: StringKey(stringValue: AlternateCodingKeys.runCadence.rawValue)!)
 
-        watts = try container.decodeIfPresent(UInt16.self,
-                                              forKey: StringKey(stringValue: CodingKeys.watts.rawValue)!)
-        if watts == nil {
-            watts = try container.decodeIfPresent(UInt16.self,
-                                                  forKey: StringKey(stringValue: AlternateCodingKeys.watts.rawValue)!)
-        }
+        watts = try container.lazyDecode(UInt16.self,
+                                         keyOne: StringKey(stringValue: CodingKeys.watts.rawValue)!,
+                                         keyTwo: StringKey(stringValue: AlternateCodingKeys.watts.rawValue)!)
 
-        cadenceSensor = try container.decodeIfPresent(CadenceSensorType.self,
-                                                      forKey: StringKey(stringValue: CodingKeys.cadenceSensor.rawValue)!)
-        if cadenceSensor == nil {
-            cadenceSensor = try container.decodeIfPresent(CadenceSensorType.self,
-                                                          forKey: StringKey(stringValue: AlternateCodingKeys.cadenceSensor.rawValue)!)
-        }
+        cadenceSensor = try container.lazyDecode(CadenceSensorType.self,
+                                                 keyOne: StringKey(stringValue: CodingKeys.cadenceSensor.rawValue)!,
+                                                 keyTwo: StringKey(stringValue: AlternateCodingKeys.cadenceSensor.rawValue)!)
 
         self.init(speed: speed,
                   runCadence: runCadence,
@@ -184,15 +189,69 @@ extension ActivityLapExtension: Codable {
         case averageWatts = "ns3:AvgWatts"
         case maximumWatts = "ns3:MaxWatts"
     }
-}
 
-/// TCX Cadence Sensor Type
-@available(swift 4.0)
-public enum CadenceSensorType: String, Codable {
-    // CadenceSensorType_t
+    public enum AlternateCodingKeys: String, CodingKey {
+        case avgSpeed = "AvgSpeed"
+        case maximumBikeCadence = "MaxBikeCadence"
+        case averageRunCadence = "AvgRunCadence"
+        case maximumRunCadence = "MaxRunCadence"
+        case steps = "Steps"
+        case averageWatts = "AvgWatts"
+        case maximumWatts = "MaxWatts"
+    }
 
-    /// Footpod
-    case footpod = "Footpod"
-    /// Bike
-    case bike = "Bike"
+    /// Creates a new instance by decoding from the given decoder.
+    ///
+    /// This initializer throws an error if reading from the decoder fails, or
+    /// if the data read is corrupted or otherwise invalid.
+    ///
+    /// - Parameter decoder: The decoder to read data from.
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: StringKey.self)
+        var avgSpeed: Double?
+        var maximumBikeCadence: UInt8?
+        var averageRunCadence: UInt8?
+        var maximumRunCadence: UInt8?
+        var steps: UInt16?
+        var averageWatts: UInt16?
+        var maximumWatts: UInt16?
+
+        avgSpeed = try container.lazyDecode(Double.self,
+                                            keyOne: StringKey(stringValue: CodingKeys.avgSpeed.rawValue)!,
+                                            keyTwo: StringKey(stringValue: AlternateCodingKeys.avgSpeed.rawValue)!)
+
+        maximumBikeCadence = try container.lazyDecode(UInt8.self,
+                                                      keyOne: StringKey(stringValue: CodingKeys.maximumBikeCadence.rawValue)!,
+                                                      keyTwo: StringKey(stringValue: AlternateCodingKeys.maximumBikeCadence.rawValue)!)
+
+        averageRunCadence = try container.lazyDecode(UInt8.self,
+                                                     keyOne: StringKey(stringValue: CodingKeys.averageRunCadence.rawValue)!,
+                                                     keyTwo: StringKey(stringValue: AlternateCodingKeys.averageRunCadence.rawValue)!)
+
+        maximumRunCadence = try container.lazyDecode(UInt8.self,
+                                                     keyOne: StringKey(stringValue: CodingKeys.maximumRunCadence.rawValue)!,
+                                                     keyTwo: StringKey(stringValue: AlternateCodingKeys.maximumRunCadence.rawValue)!)
+
+        steps = try container.lazyDecode(UInt16.self,
+                                         keyOne: StringKey(stringValue: CodingKeys.steps.rawValue)!,
+                                         keyTwo: StringKey(stringValue: AlternateCodingKeys.steps.rawValue)!)
+
+        averageWatts = try container.lazyDecode(UInt16.self,
+                                                keyOne: StringKey(stringValue: CodingKeys.averageWatts.rawValue)!,
+                                                keyTwo: StringKey(stringValue: AlternateCodingKeys.averageWatts.rawValue)!)
+
+        maximumWatts = try container.lazyDecode(UInt16.self,
+                                                keyOne: StringKey(stringValue: CodingKeys.maximumWatts.rawValue)!,
+                                                keyTwo: StringKey(stringValue: AlternateCodingKeys.maximumWatts.rawValue)!)
+
+
+        self.init(avgSpeed: avgSpeed,
+                  maximumBikeCadence: maximumBikeCadence,
+                  averageRunCadence: averageRunCadence,
+                  maximumRunCadence: maximumRunCadence,
+                  steps: steps,
+                  averageWatts: averageWatts,
+                  maximumWatts: maximumWatts)
+    }
+
 }
