@@ -179,6 +179,32 @@ public struct ActivityGoals {
 extension ActivityGoals: Codable {
 
     public enum CodingKeys: String, CodingKey {
+        case goals = "ns5:activityGoal"
+    }
+
+    public enum AlternateCodingKeys: String, CodingKey {
         case goals = "ActivityGoal"
     }
+
+    /// Creates a new instance by decoding from the given decoder.
+    ///
+    /// This initializer throws an error if reading from the decoder fails, or
+    /// if the data read is corrupted or otherwise invalid.
+    ///
+    /// - Parameter decoder: The decoder to read data from.
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: StringKey.self)
+        var goals: [ActivityGoal]?
+
+        goals = try container.lazyDecode([ActivityGoal].self,
+                                            keyOne: StringKey(stringValue: CodingKeys.goals.rawValue)!,
+                                            keyTwo: StringKey(stringValue: AlternateCodingKeys.goals.rawValue)!)
+
+        if let goals = goals {
+            self.init(goals: goals)
+        } else {
+            self.init(goals: [ActivityGoal]())
+        }
+    }
+
 }

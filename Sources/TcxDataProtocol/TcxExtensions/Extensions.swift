@@ -34,11 +34,16 @@ public struct Extension {
     /// Activity Lap Extension
     private(set) public var activityLapExtension: ActivityLapExtension?
 
+    /// Activity Goals
+    private(set) public var activityGoals: ActivityGoals?
+
     public init(activityTrackpointExtension: ActivityTrackpointExtension?,
-                activityLapExtension: ActivityLapExtension?)
+                activityLapExtension: ActivityLapExtension?,
+                activityGoals: ActivityGoals?)
     {
         self.activityTrackpointExtension = activityTrackpointExtension
         self.activityLapExtension = activityLapExtension
+        self.activityGoals = activityGoals
     }
 }
 
@@ -48,11 +53,13 @@ extension Extension: Codable {
     public enum CodingKeys: String, CodingKey {
         case activityTrackpointExtension = "ns3:TPX"
         case activityLapExtension = "ns3:LX"
+        case activityGoals = "ns5:ActivityGoals"
     }
 
     public enum AlternateCodingKeys: String, CodingKey {
         case activityTrackpointExtension = "TPX"
         case activityLapExtension = "LX"
+        case activityGoals = "ActivityGoals"
     }
 
     /// Creates a new instance by decoding from the given decoder.
@@ -65,7 +72,7 @@ extension Extension: Codable {
         let container = try decoder.container(keyedBy: StringKey.self)
         var activityTrackpointExtension: ActivityTrackpointExtension?
         var activityLapExtension: ActivityLapExtension?
-
+        var activityGoals: ActivityGoals?
 
         activityTrackpointExtension = try container.lazyDecode(ActivityTrackpointExtension.self,
                                                                keyOne: StringKey(stringValue: CodingKeys.activityTrackpointExtension.rawValue)!,
@@ -76,9 +83,13 @@ extension Extension: Codable {
                                                         keyOne: StringKey(stringValue: CodingKeys.activityLapExtension.rawValue)!,
                                                         keyTwo: StringKey(stringValue: AlternateCodingKeys.activityLapExtension.rawValue)!)
 
+        activityGoals = try container.lazyDecode(ActivityGoals.self,
+                                                 keyOne: StringKey(stringValue: CodingKeys.activityGoals.rawValue)!,
+                                                 keyTwo: StringKey(stringValue: AlternateCodingKeys.activityGoals.rawValue)!)
 
         self.init(activityTrackpointExtension: activityTrackpointExtension,
-                  activityLapExtension: activityLapExtension)
+                  activityLapExtension: activityLapExtension,
+                  activityGoals: activityGoals)
     }
 
 }
