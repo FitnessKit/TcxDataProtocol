@@ -24,7 +24,33 @@
 
 import Foundation
 
+/// TCX Activity List
+public struct Activities {
+    // ActivityList_t
+
+    /// Activities
+    private(set) public var activities: [Activity]?
+
+    /// Multi Sport Sessions
+    private(set) public var multiSportSession: [MultiSportSession]?
+
+    public init(activities: [Activity]?, multiSportSession: [MultiSportSession]?) {
+        self.activities = activities
+        self.multiSportSession = multiSportSession
+    }
+}
+
+@available(swift 4.0)
+extension Activities: Codable {
+
+    enum CodingKeys: String, CodingKey {
+        case activities = "Activity"
+        case multiSportSession = "MultiSportSession"
+    }
+}
+
 /// TCX Activity
+@available(swift 4.0)
 public struct Activity {
     // Activity_t
 
