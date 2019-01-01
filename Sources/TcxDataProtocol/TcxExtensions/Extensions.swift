@@ -50,12 +50,14 @@ public struct Extension {
 @available(swift 4.0)
 extension Extension: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         case activityTrackpointExtension = "ns3:TPX"
         case activityLapExtension = "ns3:LX"
         case activityGoals = "ns5:ActivityGoals"
     }
 
+    /// Alternate Coding Keys
     public enum AlternateCodingKeys: String, CodingKey {
         case activityTrackpointExtension = "TPX"
         case activityLapExtension = "LX"

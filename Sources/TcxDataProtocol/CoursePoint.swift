@@ -56,6 +56,7 @@ public struct CoursePoint {
 @available(swift 4.0)
 extension CoursePoint: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         case name = "Name"
         case altitude = "AltitudeMeters"

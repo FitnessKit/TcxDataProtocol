@@ -1,0 +1,13 @@
+module: TcxDataProtocol
+author: Kevin A. Hoogheem
+github_url: https://github.com/FitnessKit/TcxDataProtocol
+
+readme: README.md
+
+output: docs
+clean: true
+theme: jony
+
+copyright: '© 2018 Kevin A. Hoogheem'
+
+xcodebuild_arguments: [-scheme,TcxDataProtocol-Package]

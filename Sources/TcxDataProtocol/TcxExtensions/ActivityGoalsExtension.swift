@@ -95,6 +95,7 @@ public struct Period {
 @available(swift 4.0)
 extension Period: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         // xsd:dateTime
         case startDate = "StartDateTime"
@@ -147,6 +148,7 @@ public struct ActivityGoal {
 @available(swift 4.0)
 extension ActivityGoal: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         // attribute
         case sport = "Sport"
@@ -178,10 +180,12 @@ public struct ActivityGoals {
 @available(swift 4.0)
 extension ActivityGoals: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         case goals = "ns5:activityGoal"
     }
 
+    /// Alternate Coding Keys
     public enum AlternateCodingKeys: String, CodingKey {
         case goals = "ActivityGoal"
     }

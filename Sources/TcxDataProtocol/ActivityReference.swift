@@ -40,6 +40,7 @@ public struct ActivityReference {
 @available(swift 4.0)
 extension ActivityReference: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         // xsd:dateTime
         case identification = "Id"

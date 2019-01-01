@@ -72,18 +72,3 @@ extension KeyedDecodingContainer {
     }
 
 }
-
-struct LazyDecode {
-
-    static func decode<T>(_ decodeType: T.Type, container: KeyedDecodingContainer<StringKey>, keyOne: StringKey, keyTwo: StringKey) throws -> T?  where T : Decodable {
-
-        var value = try container.decodeIfPresent(decodeType, forKey: keyOne)
-
-        if value == nil {
-            value = try container.decodeIfPresent(decodeType, forKey: keyTwo)
-        }
-
-        return value
-    }
-
-}

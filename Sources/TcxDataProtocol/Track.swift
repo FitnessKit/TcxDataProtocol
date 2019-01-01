@@ -40,6 +40,7 @@ public struct Track {
 @available(swift 4.0)
 extension Track: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         case trackPoint = "Trackpoint"
     }
@@ -101,6 +102,7 @@ public struct Trackpoint {
 @available(swift 4.0)
 extension Trackpoint: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         case time = "Time"
         case position = "Position"

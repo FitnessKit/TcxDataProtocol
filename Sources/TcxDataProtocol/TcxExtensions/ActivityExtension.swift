@@ -75,6 +75,7 @@ public struct ActivityTrackpointExtension {
 @available(swift 4.0)
 extension ActivityTrackpointExtension: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         case speed = "ns3:Speed"
         case runCadence = "ns3:RunCadence"
@@ -84,6 +85,7 @@ extension ActivityTrackpointExtension: Codable {
         case cadenceSensor = "ns3:CadenceSensorType"
     }
 
+    /// Alternate Coding Keys
     public enum AlternateCodingKeys: String, CodingKey {
         case speed = "Speed"
         case runCadence = "RunCadence"
@@ -180,6 +182,7 @@ public struct ActivityLapExtension {
 @available(swift 4.0)
 extension ActivityLapExtension: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         case avgSpeed = "ns3:AvgSpeed"
         case maximumBikeCadence = "ns3:MaxBikeCadence"
@@ -190,6 +193,7 @@ extension ActivityLapExtension: Codable {
         case maximumWatts = "ns3:MaxWatts"
     }
 
+    /// Alternate Coding Keys
     public enum AlternateCodingKeys: String, CodingKey {
         case avgSpeed = "AvgSpeed"
         case maximumBikeCadence = "MaxBikeCadence"

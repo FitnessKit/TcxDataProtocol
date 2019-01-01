@@ -55,6 +55,7 @@ public struct Training {
 @available(swift 4.0)
 extension Training: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         // attribute
         case virtualPartner = "VirtualPartner"

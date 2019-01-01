@@ -43,6 +43,7 @@ public struct NextSport {
 @available(swift 4.0)
 extension NextSport: Codable {
 
+    /// Coding Keys
     enum CodingKeys: String, CodingKey {
         case transition = "Transition"
         case activity = "Activity"

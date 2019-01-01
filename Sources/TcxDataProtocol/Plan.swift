@@ -51,6 +51,7 @@ public struct Plan {
 @available(swift 4.0)
 extension Plan: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         case name = "name"
 

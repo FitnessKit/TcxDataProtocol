@@ -55,6 +55,7 @@ public struct Application {
 @available(swift 4.0)
 extension Application: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         case build = "Build"
         case language = "LangID"

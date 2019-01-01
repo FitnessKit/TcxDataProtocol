@@ -43,6 +43,7 @@ public struct ActivityList {
 @available(swift 4.0)
 extension ActivityList: Codable {
 
+    /// Coding Keys
     enum CodingKeys: String, CodingKey {
         case activities = "Activity"
         case multiSportSession = "MultiSportSession"
@@ -92,6 +93,7 @@ public struct Activity {
 @available(swift 4.0)
 extension Activity: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         // attribute
         case sport = "Sport"

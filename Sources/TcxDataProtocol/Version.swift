@@ -55,6 +55,7 @@ public struct Version {
 @available(swift 4.0)
 extension Version: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         case major = "VersionMajor"
         case minor = "VersionMinor"

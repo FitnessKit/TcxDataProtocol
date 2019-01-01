@@ -64,6 +64,7 @@ public struct Author {
 @available(swift 4.0)
 extension Author: Codable {
 
+    /// Coding Keys
     public enum CodingKeys: String, CodingKey {
         // attribute
         case type = "xsi:type"

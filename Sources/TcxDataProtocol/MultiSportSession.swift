@@ -56,6 +56,7 @@ public struct MultiSportSession {
 @available(swift 4.0)
 extension MultiSportSession: Codable {
 
+    /// Coding Keys
     enum CodingKeys: String, CodingKey {
         // xsd:dateTime
         case identification = "Id"
