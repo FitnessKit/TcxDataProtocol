@@ -25,7 +25,7 @@
 import Foundation
 
 /// TCX Activity List
-public struct Activities {
+public struct ActivityList {
     // ActivityList_t
 
     /// Activities
@@ -41,7 +41,7 @@ public struct Activities {
 }
 
 @available(swift 4.0)
-extension Activities: Codable {
+extension ActivityList: Codable {
 
     enum CodingKeys: String, CodingKey {
         case activities = "Activity"
