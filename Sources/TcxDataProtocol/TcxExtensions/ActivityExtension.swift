@@ -66,6 +66,63 @@ extension ActivityTrackpointExtension: Codable {
         //attribute
         case cadenceSensor = "ns3:CadenceSensorType"
     }
+
+    public enum AlternateCodingKeys: String, CodingKey {
+        case speed = "Speed"
+        case runCadence = "RunCadence"
+        case watts = "Watts"
+
+        //attribute
+        case cadenceSensor = "CadenceSensorType"
+    }
+
+    /// Creates a new instance by decoding from the given decoder.
+    ///
+    /// This initializer throws an error if reading from the decoder fails, or
+    /// if the data read is corrupted or otherwise invalid.
+    ///
+    /// - Parameter decoder: The decoder to read data from.
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: StringKey.self)
+        var speed: Double?
+        var runCadence: UInt8?
+        var watts: UInt16?
+        var cadenceSensor: CadenceSensorType?
+
+        speed = try container.decodeIfPresent(Double.self,
+                                              forKey: StringKey(stringValue: CodingKeys.speed.rawValue)!)
+        if speed == nil {
+            speed = try container.decodeIfPresent(Double.self,
+                                                  forKey: StringKey(stringValue: AlternateCodingKeys.speed.rawValue)!)
+        }
+
+        runCadence = try container.decodeIfPresent(UInt8.self,
+                                                   forKey: StringKey(stringValue: CodingKeys.runCadence.rawValue)!)
+        if runCadence == nil {
+            runCadence = try container.decodeIfPresent(UInt8.self,
+                                                       forKey: StringKey(stringValue: AlternateCodingKeys.runCadence.rawValue)!)
+        }
+
+        watts = try container.decodeIfPresent(UInt16.self,
+                                              forKey: StringKey(stringValue: CodingKeys.watts.rawValue)!)
+        if watts == nil {
+            watts = try container.decodeIfPresent(UInt16.self,
+                                                  forKey: StringKey(stringValue: AlternateCodingKeys.watts.rawValue)!)
+        }
+
+        cadenceSensor = try container.decodeIfPresent(CadenceSensorType.self,
+                                                      forKey: StringKey(stringValue: CodingKeys.cadenceSensor.rawValue)!)
+        if cadenceSensor == nil {
+            cadenceSensor = try container.decodeIfPresent(CadenceSensorType.self,
+                                                          forKey: StringKey(stringValue: AlternateCodingKeys.cadenceSensor.rawValue)!)
+        }
+
+        self.init(speed: speed,
+                  runCadence: runCadence,
+                  watts: watts,
+                  cadenceSensor: cadenceSensor)
+    }
+
 }
 
 /// TCX Activity Lap Extension

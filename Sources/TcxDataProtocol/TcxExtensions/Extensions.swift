@@ -49,4 +49,40 @@ extension Extension: Codable {
         case activityTrackpointExtension = "ns3:TPX"
         case activityLapExtension = "ns3:LX"
     }
+
+    public enum AlternateCodingKeys: String, CodingKey {
+        case activityTrackpointExtension = "TPX"
+        case activityLapExtension = "LX"
+    }
+
+    /// Creates a new instance by decoding from the given decoder.
+    ///
+    /// This initializer throws an error if reading from the decoder fails, or
+    /// if the data read is corrupted or otherwise invalid.
+    ///
+    /// - Parameter decoder: The decoder to read data from.
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: StringKey.self)
+        var activityTrackpointExtension: ActivityTrackpointExtension?
+        var activityLapExtension: ActivityLapExtension?
+
+        activityTrackpointExtension = try container.decodeIfPresent(ActivityTrackpointExtension.self,
+                                                                        forKey: StringKey(stringValue: CodingKeys.activityTrackpointExtension.rawValue)!)
+        if activityTrackpointExtension == nil {
+            activityTrackpointExtension = try container.decodeIfPresent(ActivityTrackpointExtension.self,
+                                                                        forKey: StringKey(stringValue: AlternateCodingKeys.activityTrackpointExtension.rawValue)!)
+        }
+
+        activityLapExtension = try container.decodeIfPresent(ActivityLapExtension.self,
+                                                             forKey: StringKey(stringValue: CodingKeys.activityLapExtension.rawValue)!)
+        if activityLapExtension == nil {
+            activityLapExtension = try container.decodeIfPresent(ActivityLapExtension.self,
+                                                                 forKey: StringKey(stringValue: AlternateCodingKeys.activityLapExtension.rawValue)!)
+        }
+
+
+        self.init(activityTrackpointExtension: activityTrackpointExtension,
+                  activityLapExtension: activityLapExtension)
+    }
+
 }
