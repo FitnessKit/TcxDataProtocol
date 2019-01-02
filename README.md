@@ -21,6 +21,60 @@ dependencies: [
 ```
 ## How to Use
 
+### Decode
+
+
+### Encode
+
+
+### Supported Elements
+
+* `ActivityList`
+* `Activity`
+* `ActivityLap`
+* `ActivityReference`
+* `Application`
+* `Author`
+* `Build`
+* `BuildType`
+* `Course`
+* `CourseLap`
+* `CourseList`
+* `CoursePoint`
+* `CoursePointType`
+* `Creator`
+* `Gender`
+* `HeartRateInBeatsPerMinute`
+* `HeartRateInBeatsPercentMax`
+* `Intensity`
+* `MultiSportSession`
+* `NextSport`
+* `Plan`
+* `Position`
+* `QuickWorkoutResults`
+* `SensorState`
+* `Sport`
+* `Track`
+* `Trackpoint`
+* `Training`
+* `TrainingType`
+* `TriggerMethod`
+* `Version`
+
+### Supported Extensions
+
+* ActivityExtension
+    * `CadenceSensorType`
+    * `ActivityTrackpointExtension`
+    * `ActivityLapExtension`
+
+* ActivityGoals
+    * `Measure`
+    * `RecurrenceCode`
+    * `Period`
+    * `ActivityGoal`
+    * `ActivityGoals`
+
 
 ## Author
 

@@ -25,6 +25,7 @@
 import Foundation
 
 /// TCX Activity List
+@available(swift 4.0)
 public struct ActivityList {
     // ActivityList_t
 
