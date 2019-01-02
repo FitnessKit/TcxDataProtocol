@@ -63,6 +63,13 @@
 </code></pre>
 <h2 id='how-to-use' class='heading'>How to Use</h2>
 <h3 id='decode' class='heading'>Decode</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">tcxUrl</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">fileURLWithPath</span><span class="p">:</span> <span class="s">"TestFile"</span> <span class="o">+</span> <span class="s">".tcx"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">tcxData</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">Data</span><span class="p">(</span><span class="nv">contentsOf</span><span class="p">:</span> <span class="n">tcxUrl</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="k">let</span> <span class="nv">tcxData</span> <span class="o">=</span> <span class="n">tcxData</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">tcxFile</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">TcxFile</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">tcxData</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
 <h3 id='encode' class='heading'>Encode</h3>
 <h3 id='supported-elements' class='heading'>Supported Elements</h3>
 

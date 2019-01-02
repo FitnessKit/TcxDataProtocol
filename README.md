@@ -23,6 +23,14 @@ dependencies: [
 
 ### Decode
 
+```swift
+let tcxUrl = URL(fileURLWithPath: "TestFile" + ".tcx")
+let tcxData = try? Data(contentsOf: tcxUrl)
+
+if let tcxData = tcxData {
+    let tcxFile = try? TcxFile.decode(from: tcxData)
+}
+```
 
 ### Encode
 
