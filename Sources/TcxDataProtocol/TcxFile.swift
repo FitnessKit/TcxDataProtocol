@@ -112,7 +112,7 @@ extension TcxFile {
 
             /// Catch some Default Keys for Attribute
             return {(key) in
-                if key.stringValue.hasPrefix("xsi:") || key.stringValue.hasPrefix("xmlns:") {
+                if key.stringValue.hasPrefix("xsi:") || key.stringValue.hasPrefix("xmlns") {
                     return .attribute
                 }
 
