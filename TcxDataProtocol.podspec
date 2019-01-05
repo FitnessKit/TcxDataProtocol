@@ -21,6 +21,7 @@ Encoding and Decoding of the TCX Data Format.
   s.license             = { :type => 'MIT', :file => 'LICENSE' }
   s.author              = { 'Kevin A. Hoogheem' => 'kevin@hoogheem.net' }
   s.source              = { :git => 'https://github.com/FitnessKit/TcxDataProtocol.git', :tag => s.version.to_s }
+  s.swift_version       = '4.0'
 
 #Targets
   s.ios.deployment_target = '10.0'
