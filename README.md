@@ -34,6 +34,29 @@ if let tcxData = tcxData {
 
 ### Encode
 
+```swift
+
+let build = Build(version: Version(major: 0, minor: 1, buildMajor: 0, buildMinor: 0), time: nil, builder: nil, type: .alpha)
+let author = Author(name: "TcxDataProtocol", build: build, language: nil, partNumber: "11-22-33")
+
+let lap = ActivityLap(startTime: Date(), totalTime: 45.0, distance: 12.0, maximumSpeed: nil, calories: 120, averageHeartRate: nil, maximumHeartRate: nil, intensity: .active, cadence: nil, triggerMethod: .manual, track: nil, notes: nil, extensions: nil)
+
+let activity = Activity(sport: .biking, identification: Date(), lap: [lap], notes: nil, training: nil, creator: nil)
+
+let activities = ActivityList(activities: [activity], multiSportSession: nil)
+
+let database = TrainingCenterDatabase(activities: activities, courses: nil, author: author)
+
+let TCXFile = TcxFile(database: database)
+
+let encodedData = try? TCXFile.encode(prettyPrinted: true)
+
+if let encodedData = encodedData {
+    let xml = String(bytes: encodedData, encoding: .utf8)
+    print(xml!)
+}
+
+```
 
 ### Supported Elements
 
