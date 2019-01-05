@@ -46,6 +46,85 @@ public struct TcxFile {
 
 }
 
+// Encoder
+@available(swift 4.0)
+extension TcxFile {
+
+    /// Encode TcxFile
+    ///
+    /// - Parameter prettyPrinted: Should Pretty Print TCX Data
+    /// - Returns: TCX Data
+    /// - Throws: EncodingError
+    public func encode(prettyPrinted: Bool = true) throws -> Data {
+        let encoder = XMLEncoder()
+        encoder.dateEncodingStrategy = .formatted(TcxFile.formatter)
+
+        if prettyPrinted {
+            encoder.outputFormatting = [.prettyPrinted]
+        }
+
+        encoder.nodeEncodingStrategy = .custom { codableType, encoder in
+
+            /// Array<ActivityLap> Attributes
+            if let _ = codableType as? Array<ActivityLap>.Type {
+                return {(key) in
+
+                    if key.stringValue == ActivityLap.CodingKeys.startTime.rawValue {
+                        return .attribute
+                    }
+
+                    return .default }
+            }
+
+            /// Array<Activity> Attributes
+            if let _ = codableType as? Array<Activity>.Type {
+                return {(key) in
+
+                    if key.stringValue == Activity.CodingKeys.sport.rawValue {
+                        return .attribute
+                    }
+
+                    return .default }
+            }
+
+            /// Training Attributes
+            if let _ = codableType as? Training.Type {
+                return {(key) in
+
+                    if key.stringValue == Training.CodingKeys.virtualPartner.rawValue {
+                        return .attribute
+                    }
+
+                    return .default }
+            }
+
+            /// Plan Attributes
+            if let _ = codableType as? Plan.Type {
+                return {(key) in
+
+                    if key.stringValue == Plan.CodingKeys.trainingType.rawValue ||
+                        key.stringValue == Plan.CodingKeys.intervalWorkout.rawValue  {
+                        return .attribute
+                    }
+
+                    return .default }
+            }
+
+            /// Catch some Default Keys for Attribute
+            return {(key) in
+                if key.stringValue.hasPrefix("xsi:") || key.stringValue.hasPrefix("xmlns:") {
+                    return .attribute
+                }
+
+                return .default
+            }
+        }
+
+        return try encoder.encode(database, withRootKey: "TrainingCenterDatabase")
+    }
+}
+
+// Decoder
 @available(swift 4.0)
 extension TcxFile {
 
