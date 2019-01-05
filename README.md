@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/TcxDataProtocol.svg?style=flat)](http://cocoapods.org/pods/TcxDataProtocol)
 [![License](https://img.shields.io/cocoapods/l/TcxDataProtocol.svg?style=flat)](http://cocoapods.org/pods/TcxDataProtocol)
 [![Platform](https://img.shields.io/cocoapods/p/TcxDataProtocol.svg?style=flat)](http://cocoapods.org/pods/TcxDataProtocol)
+[![Readme Score](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/fitnesskit/tcxdataprotocol)](http://clayallsopp.github.io/readme-score?url=https://github.com/fitnesskit/tcxdataprotocol)
 
 Provides a Swift version of the TCX XML format.
 

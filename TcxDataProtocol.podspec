@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
 
   s.description      = <<-DESC
-Encoding and Decoding of the TCX Data Format.
+Encoding and Decoding of the TCX Data Format for Fitness based applications.
                        DESC
 
   s.homepage            = 'https://github.com/FitnessKit/TcxDataProtocol'
