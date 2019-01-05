@@ -47,7 +47,10 @@
               
               <h1 id='tcxdataprotocol' class='heading'>TcxDataProtocol</h1>
 
-<p><a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift4-compatible-4BC51D.svg?style=flat" alt="Swift4"></a></p>
+<p><a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift4.2-compatible-4BC51D.svg?style=flat" alt="Swift4"></a>
+<a href="http://cocoapods.org/pods/TcxDataProtocol"><img src="https://img.shields.io/cocoapods/v/TcxDataProtocol.svg?style=flat" alt="Version"></a>
+<a href="http://cocoapods.org/pods/TcxDataProtocol"><img src="https://img.shields.io/cocoapods/l/TcxDataProtocol.svg?style=flat" alt="License"></a>
+<a href="http://cocoapods.org/pods/TcxDataProtocol"><img src="https://img.shields.io/cocoapods/p/TcxDataProtocol.svg?style=flat" alt="Platform"></a></p>
 
 <p>Provides a Swift version of the TCX XML format.</p>
 <h2 id='installation' class='heading'>Installation</h2>
@@ -71,6 +74,28 @@
 <span class="p">}</span>
 </code></pre>
 <h3 id='encode' class='heading'>Encode</h3>
+<pre class="highlight swift"><code>
+<span class="k">let</span> <span class="nv">build</span> <span class="o">=</span> <span class="kt">Build</span><span class="p">(</span><span class="nv">version</span><span class="p">:</span> <span class="kt">Version</span><span class="p">(</span><span class="nv">major</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">minor</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">buildMajor</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">buildMinor</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span> <span class="nv">time</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">builder</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">author</span> <span class="o">=</span> <span class="kt">Author</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"TcxDataProtocol"</span><span class="p">,</span> <span class="nv">build</span><span class="p">:</span> <span class="n">build</span><span class="p">,</span> <span class="nv">language</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">partNumber</span><span class="p">:</span> <span class="s">"11-22-33"</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">lap</span> <span class="o">=</span> <span class="kt">ActivityLap</span><span class="p">(</span><span class="nv">startTime</span><span class="p">:</span> <span class="kt">Date</span><span class="p">(),</span> <span class="nv">totalTime</span><span class="p">:</span> <span class="mf">45.0</span><span class="p">,</span> <span class="nv">distance</span><span class="p">:</span> <span class="mf">12.0</span><span class="p">,</span> <span class="nv">maximumSpeed</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">calories</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span> <span class="nv">averageHeartRate</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">maximumHeartRate</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">intensity</span><span class="p">:</span> <span class="o">.</span><span class="n">active</span><span class="p">,</span> <span class="nv">cadence</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">triggerMethod</span><span class="p">:</span> <span class="o">.</span><span class="n">manual</span><span class="p">,</span> <span class="nv">track</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">notes</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">extensions</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">activity</span> <span class="o">=</span> <span class="kt">Activity</span><span class="p">(</span><span class="nv">sport</span><span class="p">:</span> <span class="o">.</span><span class="n">biking</span><span class="p">,</span> <span class="nv">identification</span><span class="p">:</span> <span class="kt">Date</span><span class="p">(),</span> <span class="nv">lap</span><span class="p">:</span> <span class="p">[</span><span class="n">lap</span><span class="p">],</span> <span class="nv">notes</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">training</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">creator</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">activities</span> <span class="o">=</span> <span class="kt">ActivityList</span><span class="p">(</span><span class="nv">activities</span><span class="p">:</span> <span class="p">[</span><span class="n">activity</span><span class="p">],</span> <span class="nv">multiSportSession</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">database</span> <span class="o">=</span> <span class="kt">TrainingCenterDatabase</span><span class="p">(</span><span class="nv">activities</span><span class="p">:</span> <span class="n">activities</span><span class="p">,</span> <span class="nv">courses</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">author</span><span class="p">:</span> <span class="n">author</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">TCXFile</span> <span class="o">=</span> <span class="kt">TcxFile</span><span class="p">(</span><span class="nv">database</span><span class="p">:</span> <span class="n">database</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">encodedData</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">TCXFile</span><span class="o">.</span><span class="nf">encode</span><span class="p">(</span><span class="nv">prettyPrinted</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="k">let</span> <span class="nv">encodedData</span> <span class="o">=</span> <span class="n">encodedData</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">xml</span> <span class="o">=</span> <span class="kt">String</span><span class="p">(</span><span class="nv">bytes</span><span class="p">:</span> <span class="n">encodedData</span><span class="p">,</span> <span class="nv">encoding</span><span class="p">:</span> <span class="o">.</span><span class="n">utf8</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">xml</span><span class="o">!</span><span class="p">)</span>
+<span class="p">}</span>
+
+</code></pre>
 <h3 id='supported-elements' class='heading'>Supported Elements</h3>
 
 <ul>

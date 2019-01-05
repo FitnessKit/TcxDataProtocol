@@ -1,6 +1,9 @@
 # TcxDataProtocol
 
-[![Swift4](https://img.shields.io/badge/swift4-compatible-4BC51D.svg?style=flat)](https://developer.apple.com/swift)
+[![Swift4](https://img.shields.io/badge/swift4.2-compatible-4BC51D.svg?style=flat)](https://developer.apple.com/swift)
+[![Version](https://img.shields.io/cocoapods/v/TcxDataProtocol.svg?style=flat)](http://cocoapods.org/pods/TcxDataProtocol)
+[![License](https://img.shields.io/cocoapods/l/TcxDataProtocol.svg?style=flat)](http://cocoapods.org/pods/TcxDataProtocol)
+[![Platform](https://img.shields.io/cocoapods/p/TcxDataProtocol.svg?style=flat)](http://cocoapods.org/pods/TcxDataProtocol)
 
 Provides a Swift version of the TCX XML format.
 
