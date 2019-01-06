@@ -47,6 +47,15 @@ public struct Extension {
     }
 }
 
+extension Extension: Equatable {
+
+    public static func == (lhs: Extension, rhs: Extension) -> Bool {
+        return (lhs.activityTrackpointExtension == rhs.activityTrackpointExtension) &&
+            (lhs.activityLapExtension == rhs.activityLapExtension) &&
+            (lhs.activityGoals == rhs.activityGoals)
+    }
+}
+
 @available(swift 4.0)
 extension Extension: Codable {
 

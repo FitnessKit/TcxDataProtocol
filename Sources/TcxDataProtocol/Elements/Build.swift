@@ -70,6 +70,16 @@ public struct Build {
     }
 }
 
+extension Build: Equatable {
+
+    public static func == (lhs: Build, rhs: Build) -> Bool {
+        return (lhs.version == rhs.version) &&
+            (lhs.time == rhs.time) &&
+            (lhs.builder == rhs.builder) &&
+            (lhs.type == rhs.type)
+    }
+}
+
 @available(swift 4.0)
 extension Build: Codable {
 

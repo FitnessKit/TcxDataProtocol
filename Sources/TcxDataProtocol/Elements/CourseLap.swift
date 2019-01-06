@@ -94,6 +94,22 @@ public struct CourseLap {
     }
 }
 
+extension CourseLap: Equatable {
+
+    public static func == (lhs: CourseLap, rhs: CourseLap) -> Bool {
+        return (lhs.totalTime == rhs.totalTime) &&
+            (lhs.distance == rhs.distance) &&
+            (lhs.beginPosition == rhs.beginPosition) &&
+            (lhs.beginAltitude == rhs.beginAltitude) &&
+            (lhs.endPosition == rhs.endPosition) &&
+            (lhs.endAltitude == rhs.endAltitude) &&
+            (lhs.averageHeartRate == rhs.averageHeartRate) &&
+            (lhs.maximumHeartRate == rhs.maximumHeartRate) &&
+            (lhs.intensity == rhs.intensity) &&
+            (lhs.cadence == rhs.cadence)
+    }
+}
+
 @available(swift 4.0)
 extension CourseLap: Codable {
 

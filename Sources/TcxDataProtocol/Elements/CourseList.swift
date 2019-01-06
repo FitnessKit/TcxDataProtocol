@@ -29,10 +29,17 @@ public struct CourseList {
     // CourseList_t
 
     /// Courses
-    private(set) public var courses: [CourseList]?
+    private(set) public var courses: [Course]?
 
-    public init(courses: [CourseList]?) {
+    public init(courses: [Course]?) {
         self.courses = courses
+    }
+}
+
+extension CourseList: Equatable {
+
+    public static func == (lhs: CourseList, rhs: CourseList) -> Bool {
+        return (lhs.courses == rhs.courses)
     }
 }
 

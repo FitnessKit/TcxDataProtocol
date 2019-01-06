@@ -92,6 +92,16 @@ public struct Period {
     }
 }
 
+extension Period: Equatable {
+
+    public static func == (lhs: Period, rhs: Period) -> Bool {
+        return (lhs.startDate == rhs.startDate) &&
+            (lhs.endDate == rhs.endDate) &&
+            (lhs.recurrence == rhs.recurrence) &&
+            (lhs.daysPerPeriod == rhs.daysPerPeriod)
+    }
+}
+
 @available(swift 4.0)
 extension Period: Codable {
 
@@ -145,6 +155,18 @@ public struct ActivityGoal {
     }
 }
 
+extension ActivityGoal: Equatable {
+
+    public static func == (lhs: ActivityGoal, rhs: ActivityGoal) -> Bool {
+        return (lhs.sport == rhs.sport) &&
+            (lhs.measure == rhs.measure) &&
+            (lhs.target == rhs.target) &&
+            (lhs.current == rhs.current) &&
+            (lhs.name == rhs.name) &&
+            (lhs.period == rhs.period)
+    }
+}
+
 @available(swift 4.0)
 extension ActivityGoal: Codable {
 
@@ -174,6 +196,13 @@ public struct ActivityGoals {
 
     public init(goals: [ActivityGoal]) {
         self.goals = goals
+    }
+}
+
+extension ActivityGoals: Equatable {
+
+    public static func == (lhs: ActivityGoals, rhs: ActivityGoals) -> Bool {
+        return (lhs.goals == rhs.goals)
     }
 }
 

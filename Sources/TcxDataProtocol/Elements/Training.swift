@@ -46,9 +46,16 @@ public struct Training {
     private(set) public var workoutResults: QuickWorkoutResults?
 
     public init(virtualPartner: Bool, workoutResults: QuickWorkoutResults?) {
-
         self.virtualPartner = virtualPartner
         self.workoutResults = workoutResults
+    }
+}
+
+extension Training: Equatable {
+
+    public static func == (lhs: Training, rhs: Training) -> Bool {
+        return (lhs.virtualPartner == rhs.virtualPartner) &&
+            (lhs.workoutResults == rhs.workoutResults)
     }
 }
 

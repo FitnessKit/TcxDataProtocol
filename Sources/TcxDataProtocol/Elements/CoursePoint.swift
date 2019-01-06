@@ -53,6 +53,16 @@ public struct CoursePoint {
     }
 }
 
+extension CoursePoint: Equatable {
+
+    public static func == (lhs: CoursePoint, rhs: CoursePoint) -> Bool {
+        return (lhs.name == rhs.name) &&
+            (lhs.altitude == rhs.altitude) &&
+            (lhs.pointType == rhs.pointType) &&
+            (lhs.notes == rhs.notes)
+    }
+}
+
 @available(swift 4.0)
 extension CoursePoint: Codable {
 

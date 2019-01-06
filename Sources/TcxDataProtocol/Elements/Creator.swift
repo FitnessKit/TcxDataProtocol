@@ -59,6 +59,17 @@ public struct Creator {
     }
 }
 
+extension Creator: Equatable {
+
+    public static func == (lhs: Creator, rhs: Creator) -> Bool {
+        return (lhs.type == rhs.type) &&
+            (lhs.name == rhs.name) &&
+            (lhs.version == rhs.version) &&
+            (lhs.unitIdentification == rhs.unitIdentification) &&
+            (lhs.productIdentification == rhs.productIdentification)
+    }
+}
+
 @available(swift 4.0)
 extension Creator: Codable {
 

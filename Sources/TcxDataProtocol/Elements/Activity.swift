@@ -24,40 +24,12 @@
 
 import Foundation
 
-/// TCX Activity List
-@available(swift 4.0)
-public struct ActivityList {
-    // ActivityList_t
-
-    /// Activities
-    private(set) public var activities: [Activity]?
-
-    /// Multi Sport Sessions
-    private(set) public var multiSportSession: [MultiSportSession]?
-
-    public init(activities: [Activity]?, multiSportSession: [MultiSportSession]?) {
-        self.activities = activities
-        self.multiSportSession = multiSportSession
-    }
-}
-
-@available(swift 4.0)
-extension ActivityList: Codable {
-
-    /// Coding Keys
-    enum CodingKeys: String, CodingKey {
-        case activities = "Activity"
-        case multiSportSession = "MultiSportSession"
-    }
-}
-
 /// TCX Activity
 @available(swift 4.0)
 public struct Activity {
     // Activity_t
 
     /// Sport
-//    private(set) public var sport: Attribute<Sport>
     private(set) public var sport: Sport
 
     /// Activity ID
@@ -88,6 +60,18 @@ public struct Activity {
         self.notes = notes
         self.training = training
         self.creator = creator
+    }
+}
+
+extension Activity: Equatable {
+
+    public static func == (lhs: Activity, rhs: Activity) -> Bool {
+        return (lhs.sport == rhs.sport) &&
+            (lhs.identification == rhs.identification) &&
+            (lhs.lap == rhs.lap) &&
+            (lhs.notes == rhs.notes) &&
+            (lhs.training == rhs.training)  &&
+            (lhs.creator == rhs.creator) 
     }
 }
 

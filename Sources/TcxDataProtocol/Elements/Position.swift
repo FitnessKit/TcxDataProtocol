@@ -29,17 +29,45 @@ import Foundation
 public struct Position {
     /// Position_t
 
+    /// Bounds Latitude Degrees
+    private let latitudeDegreesBounds = ClosedRange(uncheckedBounds: (lower: -90.0, upper: 90.0))
+
+    /// Bounds Longitude Degrees
+    private let longitudeDegreesBounds = ClosedRange(uncheckedBounds: (lower: -180.0, upper: 180.0))
+
+
     /// Latitude Degrees
-    // 90 to -90
+    ///
+    /// - note: Bounds -90.0 to 90.0
     private(set) public var latitudeDegrees: Double?
 
     /// Longitude Degrees
-    // 180 to -180
+    ///
+    /// - note: Bounds -180 to 180
     private(set) public var longitudeDegrees: Double?
 
     public init(latitudeDegrees: Double?, longitudeDegrees: Double?) {
-        self.latitudeDegrees = latitudeDegrees
-        self.longitudeDegrees = longitudeDegrees
+
+        if let latitudeDegrees = latitudeDegrees {
+            if latitudeDegreesBounds.contains(latitudeDegrees) {
+                self.latitudeDegrees = latitudeDegrees
+            }
+        }
+
+        if let longitudeDegrees = longitudeDegrees {
+            if longitudeDegreesBounds.contains(longitudeDegrees) {
+                self.longitudeDegrees = longitudeDegrees
+            }
+        }
+
+    }
+}
+
+extension Position: Equatable {
+
+    public static func == (lhs: Position, rhs: Position) -> Bool {
+        return (lhs.latitudeDegrees == rhs.latitudeDegrees) &&
+            (lhs.longitudeDegrees == rhs.longitudeDegrees)
     }
 }
 

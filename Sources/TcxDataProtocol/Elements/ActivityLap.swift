@@ -106,6 +106,25 @@ public struct ActivityLap {
     }
 }
 
+extension ActivityLap: Equatable {
+
+    public static func == (lhs: ActivityLap, rhs: ActivityLap) -> Bool {
+        return (lhs.startTime == rhs.startTime) &&
+            (lhs.totalTime == rhs.totalTime) &&
+            (lhs.distance == rhs.distance) &&
+            (lhs.maximumSpeed == rhs.maximumSpeed) &&
+            (lhs.calories == rhs.calories) &&
+            (lhs.averageHeartRate == rhs.averageHeartRate) &&
+            (lhs.maximumHeartRate == rhs.maximumHeartRate) &&
+            (lhs.intensity == rhs.intensity) &&
+            (lhs.cadence == rhs.cadence) &&
+            (lhs.triggerMethod == rhs.triggerMethod) &&
+            (lhs.track == rhs.track) &&
+            (lhs.notes == rhs.notes) &&
+            (lhs.extensions == rhs.extensions)
+    }
+}
+
 @available(swift 4.0)
 extension ActivityLap: Codable {
 

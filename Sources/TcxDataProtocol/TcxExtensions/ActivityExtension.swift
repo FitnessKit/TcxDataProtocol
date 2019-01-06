@@ -72,6 +72,16 @@ public struct ActivityTrackpointExtension {
     }
 }
 
+extension ActivityTrackpointExtension: Equatable {
+
+    public static func == (lhs: ActivityTrackpointExtension, rhs: ActivityTrackpointExtension) -> Bool {
+        return (lhs.speed == rhs.speed) &&
+            (lhs.runCadence == rhs.runCadence) &&
+            (lhs.watts == rhs.watts) &&
+            (lhs.cadenceSensor == rhs.cadenceSensor)
+    }
+}
+
 @available(swift 4.0)
 extension ActivityTrackpointExtension: Codable {
 
@@ -176,6 +186,19 @@ public struct ActivityLapExtension {
         self.steps = steps
         self.averageWatts = averageWatts
         self.maximumWatts = maximumWatts
+    }
+}
+
+extension ActivityLapExtension: Equatable {
+
+    public static func == (lhs: ActivityLapExtension, rhs: ActivityLapExtension) -> Bool {
+        return (lhs.avgSpeed == rhs.avgSpeed) &&
+            (lhs.maximumBikeCadence == rhs.maximumBikeCadence) &&
+            (lhs.averageRunCadence == rhs.averageRunCadence) &&
+            (lhs.maximumRunCadence == rhs.maximumRunCadence) &&
+            (lhs.steps == rhs.steps) &&
+            (lhs.averageWatts == rhs.averageWatts) &&
+            (lhs.maximumWatts == rhs.maximumWatts)
     }
 }
 

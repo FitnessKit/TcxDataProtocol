@@ -53,6 +53,16 @@ public struct MultiSportSession {
     }
 }
 
+extension MultiSportSession: Equatable {
+
+    public static func == (lhs: MultiSportSession, rhs: MultiSportSession) -> Bool {
+        return (lhs.identification == rhs.identification) &&
+            (lhs.firstSport == rhs.firstSport) &&
+            (lhs.nextSport == rhs.nextSport) &&
+            (lhs.notes == rhs.notes)
+    }
+}
+
 @available(swift 4.0)
 extension MultiSportSession: Codable {
 

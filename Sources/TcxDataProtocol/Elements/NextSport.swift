@@ -40,6 +40,14 @@ public struct NextSport {
     }
 }
 
+extension NextSport: Equatable {
+
+    public static func == (lhs: NextSport, rhs: NextSport) -> Bool {
+        return (lhs.transition == rhs.transition) &&
+            (lhs.activity == rhs.activity)
+    }
+}
+
 @available(swift 4.0)
 extension NextSport: Codable {
 

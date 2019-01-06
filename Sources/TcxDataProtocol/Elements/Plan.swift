@@ -48,6 +48,15 @@ public struct Plan {
     }
 }
 
+extension Plan: Equatable {
+
+    public static func == (lhs: Plan, rhs: Plan) -> Bool {
+        return (lhs.name == rhs.name) &&
+            (lhs.trainingType == rhs.trainingType) &&
+            (lhs.intervalWorkout == rhs.intervalWorkout)
+    }
+}
+
 @available(swift 4.0)
 extension Plan: Codable {
 

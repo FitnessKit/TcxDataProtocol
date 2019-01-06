@@ -38,6 +38,13 @@ public struct HeartRateInBeatsPerMinute {
     }
 }
 
+extension HeartRateInBeatsPerMinute: Equatable {
+
+    public static func == (lhs: HeartRateInBeatsPerMinute, rhs: HeartRateInBeatsPerMinute) -> Bool {
+        return (lhs.heartRate == rhs.heartRate)
+    }
+}
+
 @available(swift 4.0)
 extension HeartRateInBeatsPerMinute: Codable {
 
@@ -59,6 +66,13 @@ public struct HeartRateInBeatsPercentMax {
 
     public init(heartRate: UInt8) {
         self.heartRate = heartRate
+    }
+}
+
+extension HeartRateInBeatsPercentMax: Equatable {
+
+    public static func == (lhs: HeartRateInBeatsPercentMax, rhs: HeartRateInBeatsPercentMax) -> Bool {
+        return (lhs.heartRate == rhs.heartRate)
     }
 }
 

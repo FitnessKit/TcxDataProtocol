@@ -28,6 +28,7 @@ import Foundation
 @available(swift 4.0)
 public enum TriggerMethod: String, Codable {
     //TriggerMethod_t
+    
     /// Manual
     case manual = "Manual"
     /// Distance

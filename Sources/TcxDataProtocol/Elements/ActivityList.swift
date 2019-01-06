@@ -1,8 +1,8 @@
 //
-//  ActivityReference.swift
+//  ActivityList.swift
 //  TcxDataProtocol
 //
-//  Created by Kevin Hoogheem on 1/1/19.
+//  Created by Kevin Hoogheem on 1/5/19.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,32 +24,37 @@
 
 import Foundation
 
-/// TCX Activity Reference
+/// TCX Activity List
 @available(swift 4.0)
-public struct ActivityReference {
-    // ActivityReference_t
+public struct ActivityList {
+    // ActivityList_t
 
-    /// Reference ID
-    private(set) public var identification: Date
+    /// Activities
+    private(set) public var activities: [Activity]?
 
-    public init(identification: Date) {
-        self.identification = identification
+    /// Multi Sport Sessions
+    private(set) public var multiSportSession: [MultiSportSession]?
+
+    public init(activities: [Activity]?, multiSportSession: [MultiSportSession]?) {
+        self.activities = activities
+        self.multiSportSession = multiSportSession
     }
 }
 
-extension ActivityReference: Equatable {
+extension ActivityList: Equatable {
 
-    public static func == (lhs: ActivityReference, rhs: ActivityReference) -> Bool {
-        return (lhs.identification == rhs.identification)
+    public static func == (lhs: ActivityList, rhs: ActivityList) -> Bool {
+        return (lhs.activities == rhs.activities) &&
+            (lhs.multiSportSession == rhs.multiSportSession)
     }
 }
 
 @available(swift 4.0)
-extension ActivityReference: Codable {
+extension ActivityList: Codable {
 
     /// Coding Keys
-    public enum CodingKeys: String, CodingKey {
-        // xsd:dateTime
-        case identification = "Id"
+    enum CodingKeys: String, CodingKey {
+        case activities = "Activity"
+        case multiSportSession = "MultiSportSession"
     }
 }

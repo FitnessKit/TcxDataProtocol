@@ -61,6 +61,17 @@ public struct Author {
     }
 }
 
+extension Author: Equatable {
+
+    public static func == (lhs: Author, rhs: Author) -> Bool {
+        return (lhs.type == rhs.type) &&
+            (lhs.name == rhs.name) &&
+            (lhs.build == rhs.build) &&
+            (lhs.language == rhs.language) &&
+            (lhs.partNumber == rhs.partNumber)
+    }
+}
+
 @available(swift 4.0)
 extension Author: Codable {
 

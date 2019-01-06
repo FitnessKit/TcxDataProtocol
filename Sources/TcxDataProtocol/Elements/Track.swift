@@ -37,6 +37,13 @@ public struct Track {
     }
 }
 
+extension Track: Equatable {
+
+    public static func == (lhs: Track, rhs: Track) -> Bool {
+        return (lhs.trackPoint == rhs.trackPoint)
+    }
+}
+
 @available(swift 4.0)
 extension Track: Codable {
 
@@ -96,6 +103,19 @@ public struct Trackpoint {
 
         self.sensorState = sensorState
         self.extensions = extensions
+    }
+}
+
+extension Trackpoint: Equatable {
+
+    public static func == (lhs: Trackpoint, rhs: Trackpoint) -> Bool {
+        return (lhs.time == rhs.time) &&
+            (lhs.altitude == rhs.altitude) &&
+            (lhs.distance == rhs.distance) &&
+            (lhs.heartRate == rhs.heartRate) &&
+            (lhs.cadence == rhs.cadence)  &&
+            (lhs.sensorState == rhs.sensorState) &&
+            (lhs.extensions == rhs.extensions)
     }
 }
 

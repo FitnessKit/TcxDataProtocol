@@ -60,6 +60,15 @@ public struct TrainingCenterDatabase {
     }
 }
 
+extension TrainingCenterDatabase: Equatable {
+
+    public static func == (lhs: TrainingCenterDatabase, rhs: TrainingCenterDatabase) -> Bool {
+        return (lhs.activities == rhs.activities) &&
+            (lhs.courses == rhs.courses) &&
+            (lhs.author == rhs.author)
+    }
+}
+
 @available(swift 4.0)
 extension TrainingCenterDatabase: Codable {
 

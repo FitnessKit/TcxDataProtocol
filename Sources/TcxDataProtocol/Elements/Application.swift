@@ -52,6 +52,15 @@ public struct Application {
     }
 }
 
+extension Application: Equatable {
+
+    public static func == (lhs: Application, rhs: Application) -> Bool {
+        return (lhs.build == rhs.build) &&
+            (lhs.language == rhs.language) &&
+            (lhs.partNumber == rhs.partNumber)
+    }
+}
+
 @available(swift 4.0)
 extension Application: Codable {
 

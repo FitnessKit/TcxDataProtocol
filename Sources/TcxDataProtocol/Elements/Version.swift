@@ -52,6 +52,16 @@ public struct Version {
     }
 }
 
+extension Version: Equatable {
+
+    public static func == (lhs: Version, rhs: Version) -> Bool {
+        return (lhs.major == rhs.major) &&
+            (lhs.minor == rhs.minor) &&
+            (lhs.buildMajor == rhs.buildMajor) &&
+            (lhs.buildMinor == rhs.buildMinor)
+    }
+}
+
 @available(swift 4.0)
 extension Version: Codable {
 

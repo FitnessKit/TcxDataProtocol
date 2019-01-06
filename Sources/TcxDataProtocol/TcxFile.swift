@@ -29,7 +29,7 @@ import XMLCoder
 @available(swift 4.0)
 public struct TcxFile {
 
-    /// TXC xss:timedate Formatter
+    /// TCX xss:timedate Formatter
     private static let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"

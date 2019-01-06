@@ -39,6 +39,14 @@ public struct QuickWorkoutResults {
     }
 }
 
+extension QuickWorkoutResults: Equatable {
+
+    public static func == (lhs: QuickWorkoutResults, rhs: QuickWorkoutResults) -> Bool {
+        return (lhs.totalTime == rhs.totalTime) &&
+            (lhs.distance == rhs.distance)
+    }
+}
+
 @available(swift 4.0)
 extension QuickWorkoutResults: Codable {
 

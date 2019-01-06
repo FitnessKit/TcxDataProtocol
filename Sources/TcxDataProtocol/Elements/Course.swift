@@ -63,6 +63,18 @@ public struct Course {
     }
 }
 
+extension Course: Equatable {
+
+    public static func == (lhs: Course, rhs: Course) -> Bool {
+        return (lhs.name == rhs.name) &&
+            (lhs.lap == rhs.lap) &&
+            (lhs.track == rhs.track) &&
+            (lhs.notes == rhs.notes) &&
+            (lhs.coursePoints == rhs.coursePoints) &&
+            (lhs.creator == rhs.creator)
+    }
+}
+
 @available(swift 4.0)
 extension Course: Codable {
 
