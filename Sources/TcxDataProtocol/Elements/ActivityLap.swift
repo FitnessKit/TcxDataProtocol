@@ -108,6 +108,14 @@ public struct ActivityLap {
 
 extension ActivityLap: Equatable {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     public static func == (lhs: ActivityLap, rhs: ActivityLap) -> Bool {
         return (lhs.startTime == rhs.startTime) &&
             (lhs.totalTime == rhs.totalTime) &&

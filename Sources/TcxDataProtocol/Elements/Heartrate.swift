@@ -40,6 +40,14 @@ public struct HeartRateInBeatsPerMinute {
 
 extension HeartRateInBeatsPerMinute: Equatable {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     public static func == (lhs: HeartRateInBeatsPerMinute, rhs: HeartRateInBeatsPerMinute) -> Bool {
         return (lhs.heartRate == rhs.heartRate)
     }
@@ -60,17 +68,25 @@ public struct HeartRateInBeatsPercentMax {
     // HeartRateAsPercentOfMax_t
 
     /// Heart Rate
-    // HeartRateValue_t
-    // PercentOfMax_t 0..100
+    ///
+    /// - note: Bound from 0 to 100%
     private(set) public var heartRate: UInt8
 
     public init(heartRate: UInt8) {
-        self.heartRate = heartRate
+        self.heartRate = min(heartRate, 100)
     }
 }
 
 extension HeartRateInBeatsPercentMax: Equatable {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     public static func == (lhs: HeartRateInBeatsPercentMax, rhs: HeartRateInBeatsPercentMax) -> Bool {
         return (lhs.heartRate == rhs.heartRate)
     }

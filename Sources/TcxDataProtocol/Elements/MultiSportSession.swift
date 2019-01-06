@@ -55,6 +55,14 @@ public struct MultiSportSession {
 
 extension MultiSportSession: Equatable {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     public static func == (lhs: MultiSportSession, rhs: MultiSportSession) -> Bool {
         return (lhs.identification == rhs.identification) &&
             (lhs.firstSport == rhs.firstSport) &&

@@ -28,6 +28,7 @@ import Foundation
 @available(swift 4.0)
 public enum Intensity: String, Codable {
     //Intensity_t
+    
     /// Active
     case active = "Active"
     /// Resting

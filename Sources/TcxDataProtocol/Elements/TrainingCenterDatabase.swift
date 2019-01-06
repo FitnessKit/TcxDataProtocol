@@ -33,12 +33,22 @@ public struct TrainingCenterDatabase {
     /// XSI Schema Location
     var schemaLocation: String = "http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd"
 
+    /// UserProfile Schema
     var xmlnsNs2: String = "http://www.garmin.com/xmlschemas/UserProfile/v2"
+
+    /// ActivityExtension Schema
     var xmlnsNs3: String = "http://www.garmin.com/xmlschemas/ActivityExtension/v2"
+
+    /// ProfileExtension Schema
     var xmlnsNs4: String = "http://www.garmin.com/xmlschemas/ProfileExtension/v1"
+
+    /// ActivityGoals Schema
     var xmlnsNs5: String = "http://www.garmin.com/xmlschemas/ActivityGoals/v1"
 
+    /// TrainingCenterDatabase Schema
     var xmlns: String = "http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2"
+
+    /// Schema
     var xmlnsXsi: String = "http://www.w3.org/2001/XMLSchema-instance"
 
     /// Activities
@@ -62,6 +72,14 @@ public struct TrainingCenterDatabase {
 
 extension TrainingCenterDatabase: Equatable {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     public static func == (lhs: TrainingCenterDatabase, rhs: TrainingCenterDatabase) -> Bool {
         return (lhs.activities == rhs.activities) &&
             (lhs.courses == rhs.courses) &&

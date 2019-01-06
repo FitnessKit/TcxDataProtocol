@@ -65,13 +65,21 @@ public struct Activity {
 
 extension Activity: Equatable {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     public static func == (lhs: Activity, rhs: Activity) -> Bool {
         return (lhs.sport == rhs.sport) &&
             (lhs.identification == rhs.identification) &&
             (lhs.lap == rhs.lap) &&
             (lhs.notes == rhs.notes) &&
             (lhs.training == rhs.training)  &&
-            (lhs.creator == rhs.creator) 
+            (lhs.creator == rhs.creator)
     }
 }
 

@@ -94,6 +94,14 @@ public struct Period {
 
 extension Period: Equatable {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     public static func == (lhs: Period, rhs: Period) -> Bool {
         return (lhs.startDate == rhs.startDate) &&
             (lhs.endDate == rhs.endDate) &&
@@ -157,6 +165,14 @@ public struct ActivityGoal {
 
 extension ActivityGoal: Equatable {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     public static func == (lhs: ActivityGoal, rhs: ActivityGoal) -> Bool {
         return (lhs.sport == rhs.sport) &&
             (lhs.measure == rhs.measure) &&
@@ -201,6 +217,14 @@ public struct ActivityGoals {
 
 extension ActivityGoals: Equatable {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     public static func == (lhs: ActivityGoals, rhs: ActivityGoals) -> Bool {
         return (lhs.goals == rhs.goals)
     }

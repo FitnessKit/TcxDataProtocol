@@ -55,6 +55,14 @@ public struct CoursePoint {
 
 extension CoursePoint: Equatable {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     public static func == (lhs: CoursePoint, rhs: CoursePoint) -> Bool {
         return (lhs.name == rhs.name) &&
             (lhs.altitude == rhs.altitude) &&
@@ -73,43 +81,4 @@ extension CoursePoint: Codable {
         case pointType = "PointType"
         case notes = "Notes"
     }
-}
-
-/// Identifies CoursePoint Type
-@available(swift 4.0)
-public enum CoursePointType: String, Codable {
-    // CoursePointType_t
-
-    /// Generic
-    case generic = "Generic"
-    /// Summit
-    case summit = "Summit"
-    /// Valley
-    case valley = "Valley"
-    /// Water
-    case water = "Water"
-    /// Food
-    case food = "Food"
-    /// Danger
-    case danger = "Danger"
-    /// Left
-    case left = "Left"
-    /// Right
-    case right = "Right"
-    /// Straight
-    case straight = "Straight"
-    /// First Aid
-    case firstAid = "First Aid"
-    /// 4th Category
-    case fourthCategory = "4th Category"
-    /// 3rd Category
-    case thirdCategory  = "3rd Category"
-    /// 2nd Category
-    case secondCategory = "2nd Category"
-    /// 1st Category
-    case firstCategory = "1st Category"
-    /// Hors Category
-    case horsCategory = "Hors Category"
-    /// Sprint
-    case sprint = "Sprint"
 }

@@ -74,6 +74,14 @@ public struct ActivityTrackpointExtension {
 
 extension ActivityTrackpointExtension: Equatable {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     public static func == (lhs: ActivityTrackpointExtension, rhs: ActivityTrackpointExtension) -> Bool {
         return (lhs.speed == rhs.speed) &&
             (lhs.runCadence == rhs.runCadence) &&
@@ -191,6 +199,14 @@ public struct ActivityLapExtension {
 
 extension ActivityLapExtension: Equatable {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     public static func == (lhs: ActivityLapExtension, rhs: ActivityLapExtension) -> Bool {
         return (lhs.avgSpeed == rhs.avgSpeed) &&
             (lhs.maximumBikeCadence == rhs.maximumBikeCadence) &&

@@ -72,6 +72,14 @@ public struct Build {
 
 extension Build: Equatable {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     public static func == (lhs: Build, rhs: Build) -> Bool {
         return (lhs.version == rhs.version) &&
             (lhs.time == rhs.time) &&

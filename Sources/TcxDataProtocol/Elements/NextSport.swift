@@ -42,6 +42,14 @@ public struct NextSport {
 
 extension NextSport: Equatable {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     public static func == (lhs: NextSport, rhs: NextSport) -> Bool {
         return (lhs.transition == rhs.transition) &&
             (lhs.activity == rhs.activity)
