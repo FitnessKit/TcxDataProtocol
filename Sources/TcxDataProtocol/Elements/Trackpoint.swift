@@ -64,6 +64,7 @@ public struct Trackpoint {
                 extensions: [Extension]?)
     {
         self.time = time
+        self.position = position
         self.altitude = altitude
         self.distance = distance
         self.heartRate = heartRate
@@ -89,6 +90,7 @@ extension Trackpoint: Equatable {
     ///   - rhs: Another value to compare.
     public static func == (lhs: Trackpoint, rhs: Trackpoint) -> Bool {
         return (lhs.time == rhs.time) &&
+            (lhs.position == rhs.position) &&
             (lhs.altitude == rhs.altitude) &&
             (lhs.distance == rhs.distance) &&
             (lhs.heartRate == rhs.heartRate) &&
