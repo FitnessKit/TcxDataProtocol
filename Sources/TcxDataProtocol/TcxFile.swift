@@ -62,65 +62,10 @@ extension TcxFile {
         if prettyPrinted {
             encoder.outputFormatting = [.prettyPrinted]
         }
+        
+        let header = XMLHeader(version: 1.0, encoding: "UTF-8", standalone: nil)
 
-        encoder.nodeEncodingStrategy = .custom { codableType, encoder in
-
-            /// Array<ActivityLap> Attributes
-            if let _ = codableType as? Array<ActivityLap>.Type {
-                return {(key) in
-
-                    if key.stringValue == ActivityLap.CodingKeys.startTime.rawValue {
-                        return .attribute
-                    }
-
-                    return .default }
-            }
-
-            /// Array<Activity> Attributes
-            if let _ = codableType as? Array<Activity>.Type {
-                return {(key) in
-
-                    if key.stringValue == Activity.CodingKeys.sport.rawValue {
-                        return .attribute
-                    }
-
-                    return .default }
-            }
-
-            /// Training Attributes
-            if let _ = codableType as? Training.Type {
-                return {(key) in
-
-                    if key.stringValue == Training.CodingKeys.virtualPartner.rawValue {
-                        return .attribute
-                    }
-
-                    return .default }
-            }
-
-            /// Plan Attributes
-            if let _ = codableType as? Plan.Type {
-                return {(key) in
-
-                    if key.stringValue == Plan.CodingKeys.trainingType.rawValue ||
-                        key.stringValue == Plan.CodingKeys.intervalWorkout.rawValue  {
-                        return .attribute
-                    }
-
-                    return .default }
-            }
-
-            /// Catch some Default Keys for Attribute
-            return {(key) in
-                if key.stringValue.hasPrefix("xsi:") || key.stringValue.hasPrefix("xmlns") {
-                    return .attribute
-                }
-
-                return .default
-            }
-        }
-
-        return try encoder.encode(database, withRootKey: "TrainingCenterDatabase")
+        return try encoder.encode(database, withRootKey: "TrainingCenterDatabase", header: header)
     }
 }
 

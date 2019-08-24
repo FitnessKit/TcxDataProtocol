@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TcxDataProtocol'
-  s.version          = '0.2.0'
+  s.version          = '1.0.0'
   s.summary          = 'Encoding and Decoding of the TCX Data Format.'
 
 
@@ -21,7 +21,8 @@ Encoding and Decoding of the TCX Data Format for Fitness based applications.
   s.license             = { :type => 'MIT', :file => 'LICENSE' }
   s.author              = { 'Kevin A. Hoogheem' => 'kevin@hoogheem.net' }
   s.source              = { :git => 'https://github.com/FitnessKit/TcxDataProtocol.git', :tag => s.version.to_s }
-  s.swift_version       = '4.0'
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
+  s.swift_version       = '5.0'
 
 #Targets
   s.ios.deployment_target = '10.0'
@@ -36,6 +37,6 @@ Encoding and Decoding of the TCX Data Format for Fitness based applications.
 #  s.ios.framework       = [ 'Dispatch' ]
 
 #Dependancy
-  s.dependency 'XMLCoder', '>= 0.2.1'
+  s.dependency 'XMLCoder', '>= 0.8.0'
 
 end

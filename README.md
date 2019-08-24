@@ -1,6 +1,6 @@
 # TcxDataProtocol
 
-[![Swift4](https://img.shields.io/badge/swift4.2-compatible-4BC51D.svg?style=flat)](https://developer.apple.com/swift)
+[![Swift5](https://img.shields.io/badge/swift5.0-compatible-4BC51D.svg?style=flat)](https://developer.apple.com/swift)
 [![Version](https://img.shields.io/cocoapods/v/TcxDataProtocol.svg?style=flat)](http://cocoapods.org/pods/TcxDataProtocol)
 [![License](https://img.shields.io/cocoapods/l/TcxDataProtocol.svg?style=flat)](http://cocoapods.org/pods/TcxDataProtocol)
 [![Platform](https://img.shields.io/cocoapods/p/TcxDataProtocol.svg?style=flat)](http://cocoapods.org/pods/TcxDataProtocol)
@@ -20,7 +20,7 @@ pod 'TcxDataProtocol'
 Swift Package Manager:
 ```swift
 dependencies: [
-    .package(url: "https://github.com/FitnessKit/TcxDataProtocol", from: "0.2.0")
+    .package(url: "https://github.com/FitnessKit/TcxDataProtocol", from: "1.0.0")
 ]
 ```
 ## How to Use

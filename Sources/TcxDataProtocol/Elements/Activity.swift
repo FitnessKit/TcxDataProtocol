@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 
 import Foundation
+import XMLCoder
 
 /// TCX Activity
 @available(swift 4.0)
@@ -83,6 +84,31 @@ extension Activity: Equatable {
     }
 }
 
+extension Activity: Hashable {
+    
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.sport)
+        hasher.combine(self.identification)
+        hasher.combine(self.lap)
+        hasher.combine(self.notes)
+        hasher.combine(self.training)
+        hasher.combine(self.creator)
+    }
+}
+
 @available(swift 4.0)
 extension Activity: Codable {
 
@@ -97,5 +123,17 @@ extension Activity: Codable {
         case notes = "Notes"
         case training = "Training"
         case creator = "Creator"
+    }
+}
+
+extension Activity: DynamicNodeEncoding {
+    
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case Activity.CodingKeys.sport:
+            return .attribute
+        default:
+            return .element
+        }
     }
 }
