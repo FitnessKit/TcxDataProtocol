@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 
 import Foundation
+import XMLCoder
 
 /// TCX Activity Lap
 @available(swift 4.0)
@@ -133,6 +134,38 @@ extension ActivityLap: Equatable {
     }
 }
 
+extension ActivityLap: Hashable {
+    
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.startTime)
+        hasher.combine(self.totalTime)
+        hasher.combine(self.distance)
+        hasher.combine(self.maximumSpeed)
+        hasher.combine(self.calories)
+        hasher.combine(self.averageHeartRate)
+        hasher.combine(self.maximumHeartRate)
+        hasher.combine(self.intensity)
+        hasher.combine(self.cadence)
+        hasher.combine(self.triggerMethod)
+        hasher.combine(self.track)
+        hasher.combine(self.notes)
+        hasher.combine(self.extensions)
+    }
+}
+
 @available(swift 4.0)
 extension ActivityLap: Codable {
 
@@ -153,5 +186,17 @@ extension ActivityLap: Codable {
         case track = "Track"
         case notes = "Notes"
         case extensions = "Extensions"
+    }
+}
+
+extension ActivityLap: DynamicNodeEncoding {
+    
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case ActivityLap.CodingKeys.startTime:
+            return .attribute
+        default:
+            return .element
+        }
     }
 }

@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 
 import Foundation
+import XMLCoder
 
 // Schema
 // https://www8.garmin.com/xmlschemas/ActivityGoalsExtensionv1.xsd
@@ -110,6 +111,29 @@ extension Period: Equatable {
     }
 }
 
+extension Period: Hashable {
+    
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.startDate)
+        hasher.combine(self.endDate)
+        hasher.combine(self.recurrence)
+        hasher.combine(self.daysPerPeriod)
+    }
+}
+
 @available(swift 4.0)
 extension Period: Codable {
 
@@ -183,6 +207,31 @@ extension ActivityGoal: Equatable {
     }
 }
 
+extension ActivityGoal: Hashable {
+    
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.sport)
+        hasher.combine(self.measure)
+        hasher.combine(self.target)
+        hasher.combine(self.current)
+        hasher.combine(self.name)
+        hasher.combine(self.period)
+    }
+}
+
 @available(swift 4.0)
 extension ActivityGoal: Codable {
 
@@ -227,6 +276,26 @@ extension ActivityGoals: Equatable {
     ///   - rhs: Another value to compare.
     public static func == (lhs: ActivityGoals, rhs: ActivityGoals) -> Bool {
         return (lhs.goals == rhs.goals)
+    }
+}
+
+extension ActivityGoals: Hashable {
+    
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.goals)
     }
 }
 
