@@ -28,12 +28,13 @@ import XMLCoder
 /// TCX File
 @available(swift 4.0)
 public struct TcxFile {
-
+ 
     /// TCX xss:timedate Formatter
     private static let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         formatter.timeZone = TimeZone(identifier: "UTC")
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
 
