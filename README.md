@@ -45,8 +45,7 @@ let workoutStartDateTime = Date()
 let build = Build(version: Version(major: 0, minor: 1, buildMajor: 0, buildMinor: 0), time: nil, builder: nil, type: .alpha)
 let author = Author(name: "TcxDataProtocol", build: build, language: nil, partNumber: "11-22-33")
 let track = [Track(trackPoint: [
-                    Trackpoint(time: workoutStartDateTime, position: nil, altitude: nil, distance: 1.11, heartRate: HeartRateInBeatsPerMinute(heartRate: 100), cadence: 100, sensorState: SensorState.present, extensions: [Extension(activityTrackpointExtension: ActivityTrackpointExtension.init(speed: 11.2, runCadence: nil, watts: 111, cadenceSensor: CadenceSensorType(rawValue: "bike")), activityLapExtension: nil, activityGoals: nil)])
-                      ,
+                    Trackpoint(time: workoutStartDateTime, position: nil, altitude: nil, distance: 1.11, heartRate: HeartRateInBeatsPerMinute(heartRate: 100), cadence: 100, sensorState: SensorState.present, extensions: [Extension(activityTrackpointExtension: ActivityTrackpointExtension.init(speed: 11.2, runCadence: nil, watts: 111, cadenceSensor: CadenceSensorType(rawValue: "bike")), activityLapExtension: nil, activityGoals: nil)]),
                     Trackpoint(time: workoutStartDateTime, position: nil, altitude: nil, distance: 1.11, heartRate: HeartRateInBeatsPerMinute(heartRate: 101), cadence: 101, sensorState: SensorState.present, extensions: [Extension(activityTrackpointExtension: ActivityTrackpointExtension.init(speed: 11.3, runCadence: nil, watts: 222, cadenceSensor: CadenceSensorType(rawValue: "bike")), activityLapExtension: nil, activityGoals: nil)])
                     ])]
 
