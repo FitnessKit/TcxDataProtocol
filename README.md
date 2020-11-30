@@ -38,14 +38,20 @@ if let tcxData = tcxData {
 
 ### Encode
 
-```swift
+Each Trackpoint time has to be unique. Below example shows a per second increment from the previous. 
 
+```swift
+let workoutStartDateTime = Date()
 let build = Build(version: Version(major: 0, minor: 1, buildMajor: 0, buildMinor: 0), time: nil, builder: nil, type: .alpha)
 let author = Author(name: "TcxDataProtocol", build: build, language: nil, partNumber: "11-22-33")
+let track = [Track(trackPoint: [
+                    Trackpoint(time: workoutStartDateTime.addingTimeInterval(Double(1)), position: nil, altitude: nil, distance: 1.11, heartRate: HeartRateInBeatsPerMinute(heartRate: 100), cadence: 100, sensorState: SensorState.present, extensions: [Extension(activityTrackpointExtension: ActivityTrackpointExtension.init(speed: 11.2, runCadence: nil, watts: 111, cadenceSensor: CadenceSensorType(rawValue: "bike")), activityLapExtension: nil, activityGoals: nil)]),
+                    Trackpoint(time: workoutStartDateTime.addingTimeInterval(Double(2)), position: nil, altitude: nil, distance: 1.11, heartRate: HeartRateInBeatsPerMinute(heartRate: 101), cadence: 101, sensorState: SensorState.present, extensions: [Extension(activityTrackpointExtension: ActivityTrackpointExtension.init(speed: 11.3, runCadence: nil, watts: 222, cadenceSensor: CadenceSensorType(rawValue: "bike")), activityLapExtension: nil, activityGoals: nil)])
+                    ])]
 
-let lap = ActivityLap(startTime: Date(), totalTime: 45.0, distance: 12.0, maximumSpeed: nil, calories: 120, averageHeartRate: nil, maximumHeartRate: nil, intensity: .active, cadence: nil, triggerMethod: .manual, track: nil, notes: nil, extensions: nil)
+let lap = ActivityLap(startTime: workoutStartDateTime, totalTime: 45.0, distance: 12.0, maximumSpeed: nil, calories: 120, averageHeartRate: nil, maximumHeartRate: nil, intensity: .active, cadence: nil, triggerMethod: .manual, track: track, notes: nil, extensions: nil)
 
-let activity = Activity(sport: .biking, identification: Date(), lap: [lap], notes: nil, training: nil, creator: nil)
+let activity = Activity(sport: .biking, identification: workoutStartDateTime, lap: [lap], notes: nil, training: nil, creator: nil)
 
 let activities = ActivityList(activities: [activity], multiSportSession: nil)
 
