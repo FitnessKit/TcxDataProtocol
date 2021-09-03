@@ -32,8 +32,40 @@ let tcxUrl = URL(fileURLWithPath: "TestFile" + ".tcx")
 let tcxData = try? Data(contentsOf: tcxUrl)
 
 if let tcxData = tcxData {
-    let tcxFile = try? TcxFile.decode(from: tcxData)
-}
+
+do {
+  let tcxFile = try TcxFile.decode(from: tcxData)
+  guard let numActivities = tcxFile.database.activities?.activities?.count else { return  }
+  
+  for activity in 0..<numActivities {    
+    guard let numLaps = tcxFile.database.activities?.activities?[activity].lap.count else {  }
+    for laps in 0..<numLaps {
+      guard let lapStartTime = tcxFile.database.activities?.activities?[activity].lap[laps].startTime else { }
+      guard let numTracks = tcxFile.database.activities?.activities?[activity].lap[laps].track?.count else {  }
+      
+      for tracks in 0..<numTracks {
+        guard let numTrackPoints = tcxFile.database.activities?.activities?[activity].lap[laps].track?[tracks].trackPoint?.count else {  }
+        
+        for trackpoints in 0..<numTrackPoints {
+          let pwr = tcxFile.database.activities?.activities?[activity].lap[laps].track?[tracks].trackPoint?[trackpoints].extensions?[0].activityTrackpointExtension?.watts
+          let spd = tcxFile.database.activities?.activities?[activity].lap[laps].track?[tracks].trackPoint?[trackpoints].extensions?[0].activityTrackpointExtension?.speed
+          let hr = tcxFile?.database.activities?.activities?[activity].lap[laps].track?[tracks].trackPoint?[trackpoints].heartRate?.heartRate
+          let lat = tcxFile?.database.activities?.activities?[activity].lap[laps].track?[tracks].trackPoint?[trackpoints].position?.latitudeDegrees
+          let lon = tcxFile?.database.activities?.activities?[activity].lap[laps].track?[tracks].trackPoint?[trackpoints].position?.longitudeDegrees
+          let dist = tcxFile?.database.activities?.activities?[activity].lap[laps].track?[tracks].trackPoint?[trackpoints].distance
+
+          if let pwr = pwr {
+            // do something
+          }
+        }
+      }
+     }
+   }
+  } catch {
+    print(error)
+  }
+
+
 ```
 
 ### Encode

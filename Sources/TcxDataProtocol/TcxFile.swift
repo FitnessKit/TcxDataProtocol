@@ -30,9 +30,17 @@ import XMLCoder
 public struct TcxFile {
  
     /// TCX xss:timedate Formatter
-    private static let formatter: DateFormatter = {
+    private static let formatterFractionalSeconds: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.timeZone = TimeZone(identifier: "UTC")
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
+    
+    private static let formatterFullTime: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         formatter.timeZone = TimeZone(identifier: "UTC")
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
@@ -58,7 +66,7 @@ extension TcxFile {
     /// - Throws: EncodingError
     public func encode(prettyPrinted: Bool = true) throws -> Data {
         let encoder = XMLEncoder()
-        encoder.dateEncodingStrategy = .formatted(TcxFile.formatter)
+        encoder.dateEncodingStrategy = .formatted(TcxFile.formatterFractionalSeconds)
 
         if prettyPrinted {
             encoder.outputFormatting = [.prettyPrinted]
@@ -79,11 +87,29 @@ extension TcxFile {
     /// - Parameter data: TCX File Data
     /// - Returns: Optional TrainingCenterDatabase
     /// - Throws: DecodingError
+
     public static func decode(from data: Data) throws -> TcxFile {
         var tcxFile: TrainingCenterDatabase?
 
         let decoder = XMLDecoder()
-        decoder.dateDecodingStrategy = .formatted(formatter)
+        
+        // https://stackoverflow.com/a/46246880/14414215
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let dateStr = try container.decode(String.self)
+            let len = dateStr.count
+            var date: Date? = nil
+            if len == 24 { // "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+                date = formatterFractionalSeconds.date(from: dateStr)
+            } else {       // "yyyy-MM-dd'T'HH:mm:ss'Z'"
+                date = formatterFullTime.date(from: dateStr)
+            }
+            guard let date_ = date else {
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateStr)")
+            }
+            return date_
+        }
+
 
         tcxFile = try decoder.decode(TrainingCenterDatabase.self, from: data)
 
