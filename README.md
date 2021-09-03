@@ -123,4 +123,4 @@ This package is developed and maintained by Kevin A. Hoogheem
 
 ## License
 
-BluetoothMessageProtocol is available under the [MIT license](http://opensource.org/licenses/MIT)
+TcxDataProtocol is available under the [MIT license](http://opensource.org/licenses/MIT)
