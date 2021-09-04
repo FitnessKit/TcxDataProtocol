@@ -87,27 +87,26 @@ extension TcxFile {
     /// - Parameter data: TCX File Data
     /// - Returns: Optional TrainingCenterDatabase
     /// - Throws: DecodingError
-
     public static func decode(from data: Data) throws -> TcxFile {
         var tcxFile: TrainingCenterDatabase?
 
         let decoder = XMLDecoder()
         
         // https://stackoverflow.com/a/46246880/14414215
-        decoder.dateDecodingStrategy = .custom { decoder in
+        decoder.dateDecodingStrategy = .custom {
+            decoder in
             let container = try decoder.singleValueContainer()
             let dateStr = try container.decode(String.self)
-            let len = dateStr.count
-            var date: Date? = nil
-            if len == 24 { // "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-                date = formatterFractionalSeconds.date(from: dateStr)
-            } else {       // "yyyy-MM-dd'T'HH:mm:ss'Z'"
-                date = formatterFullTime.date(from: dateStr)
+            
+            if let date = formatterFractionalSeconds.date(from: dateStr) {
+                return date
             }
-            guard let date_ = date else {
-                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateStr)")
+            
+            if let date = formatterFullTime.date(from: dateStr) {
+                return date
             }
-            return date_
+            
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateStr)")
         }
 
 
