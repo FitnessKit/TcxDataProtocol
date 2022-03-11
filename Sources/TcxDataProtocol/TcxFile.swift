@@ -37,6 +37,7 @@ public struct TcxFile {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
+
     
     private static let formatterFullTime: DateFormatter = {
         let formatter = DateFormatter()
@@ -45,7 +46,8 @@ public struct TcxFile {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
-
+    
+    
     /// Training Center Database
     private(set) public var database: TrainingCenterDatabase
 
@@ -91,10 +93,9 @@ extension TcxFile {
         var tcxFile: TrainingCenterDatabase?
 
         let decoder = XMLDecoder()
-        
+
         // https://stackoverflow.com/a/46246880/14414215
-        decoder.dateDecodingStrategy = .custom {
-            decoder in
+        decoder.dateDecodingStrategy = .custom { decoder in
             let container = try decoder.singleValueContainer()
             let dateStr = try container.decode(String.self)
             
@@ -108,7 +109,6 @@ extension TcxFile {
             
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateStr)")
         }
-
 
         tcxFile = try decoder.decode(TrainingCenterDatabase.self, from: data)
 
