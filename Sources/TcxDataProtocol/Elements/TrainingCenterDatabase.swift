@@ -28,20 +28,23 @@ import XMLCoder
 /// TCX Training Center Database
 ///
 /// This is the Root element of the TCX File
+///
+/// Some tags are made as optional String? to accomodate differences between different sites
+/// eg: xmlnsNs&4 is missing on Strava TCX files. xmlxXsi is named differently on Tapiriik.sync
 @available(swift 4.0)
 public struct TrainingCenterDatabase {
 
     /// XSI Schema Location
-    var schemaLocation: String = "http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd"
+    var schemaLocation: String? = "http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd"
 
     /// UserProfile Schema
     var xmlnsNs2: String = "http://www.garmin.com/xmlschemas/UserProfile/v2"
 
     /// ActivityExtension Schema
-    var xmlnsNs3: String = "http://www.garmin.com/xmlschemas/ActivityExtension/v2"
+    var xmlnsNs3: String? = "http://www.garmin.com/xmlschemas/ActivityExtension/v2"
 
     /// ProfileExtension Schema
-    var xmlnsNs4: String = "http://www.garmin.com/xmlschemas/ProfileExtension/v1"
+    var xmlnsNs4: String? = "http://www.garmin.com/xmlschemas/ProfileExtension/v1"
 
     /// ActivityGoals Schema
     var xmlnsNs5: String = "http://www.garmin.com/xmlschemas/ActivityGoals/v1"
@@ -50,7 +53,7 @@ public struct TrainingCenterDatabase {
     var xmlns: String = "http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2"
 
     /// Schema
-    var xmlnsXsi: String = "http://www.w3.org/2001/XMLSchema-instance"
+    var xmlnsXsi: String? = "http://www.w3.org/2001/XMLSchema-instance"
 
     /// Activities
     private(set) public var activities: ActivityList?

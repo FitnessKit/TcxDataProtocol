@@ -30,7 +30,7 @@ import XMLCoder
 public struct TcxFile {
  
     /// TCX xss:timedate Formatter
-    private static let formatter: DateFormatter = {
+    private static let formatterFractionalSeconds: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         formatter.timeZone = TimeZone(identifier: "UTC")
@@ -38,6 +38,16 @@ public struct TcxFile {
         return formatter
     }()
 
+    
+    private static let formatterFullTime: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        formatter.timeZone = TimeZone(identifier: "UTC")
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
+    
+    
     /// Training Center Database
     private(set) public var database: TrainingCenterDatabase
 
@@ -58,7 +68,7 @@ extension TcxFile {
     /// - Throws: EncodingError
     public func encode(prettyPrinted: Bool = true) throws -> Data {
         let encoder = XMLEncoder()
-        encoder.dateEncodingStrategy = .formatted(TcxFile.formatter)
+        encoder.dateEncodingStrategy = .formatted(TcxFile.formatterFractionalSeconds)
 
         if prettyPrinted {
             encoder.outputFormatting = [.prettyPrinted]
@@ -83,7 +93,22 @@ extension TcxFile {
         var tcxFile: TrainingCenterDatabase?
 
         let decoder = XMLDecoder()
-        decoder.dateDecodingStrategy = .formatted(formatter)
+
+        // https://stackoverflow.com/a/46246880/14414215
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let dateStr = try container.decode(String.self)
+            
+            if let date = formatterFractionalSeconds.date(from: dateStr) {
+                return date
+            }
+            
+            if let date = formatterFullTime.date(from: dateStr) {
+                return date
+            }
+            
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateStr)")
+        }
 
         tcxFile = try decoder.decode(TrainingCenterDatabase.self, from: data)
 
