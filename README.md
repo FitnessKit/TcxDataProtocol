@@ -20,7 +20,7 @@ pod 'TcxDataProtocol'
 Swift Package Manager:
 ```swift
 dependencies: [
-    .package(url: "https://github.com/FitnessKit/TcxDataProtocol", from: "1.0.0")
+    .package(url: "https://github.com/FitnessKit/TcxDataProtocol", from: "1.0.2")
 ]
 ```
 ## How to Use
